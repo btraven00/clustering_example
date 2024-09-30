@@ -13,8 +13,8 @@ flowchart LR
      penguins --> manhattan
   end
   subgraph methods
-    iris --> kmeans
-    penguins --> kmeans
+    euclidean --> kmeans
+    manhattan --> kmeans
     euclidean --> ward
     manhattan --> ward
   end
