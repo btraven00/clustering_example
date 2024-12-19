@@ -47,40 +47,29 @@ stages:
           - values: ["--dataset_generator", "wut", "--dataset_name", "z2"]
           - values: ["--dataset_generator", "wut", "--dataset_name", "z3"]
     outputs:
-      - id: data.features
+      - id: data.matrix
         path: "{input}/{stage}/{module}/{params}/{dataset}.data.gz"
       - id: data.labels
         path: "{input}/{stage}/{module}/{params}/{dataset}.labels0.gz"
+  - id: clustering
+    modules:
+      - id: fastcluster
+        name: "fastcluster algorithm"
+        software_environment: "clustbench"
+        repository:
+          url: https://github.com/imallona/clustbench_fastcluster
+          commit: b298cdc
+        parameters:
+          - values: ["--linkage", "complete", '--k', 4]
+          - values: ["--linkage", "ward", '--k', 4]
+          - values: ["--linkage", "average", '--k', 4]
+          - values: ["--linkage", "weighted", '--k', 4]
+          - values: ["--linkage", "median", '--k', 4]                    
+          - values: ["--linkage", "centroid", '--k', 4]          
 
-  ## - id: distances
-  ##   modules:
-  ##     - id: D1
-  ##       software_environment: "clustbench"
-  ##       parameters:
-  ##         - values: ["--measure", "cosine"]
-  ##         - values: ["--measure", "euclidean"]
-  ##         - values: ["--measure", "manhattan"]
-  ##         - values: ["--measure", "chebyshev"]
-  ##       repository:
-  ##         url: https://github.com/omnibenchmark-example/distance.git
-  ##         commit: dd99d4f
-  ##   inputs:
-  ##     - entries:
-  ##         - data.features
-  ##   outputs:
-  ##     - id: distances
-  ##       path: "{input}/{stage}/{module}/{params}/{dataset}.distances.csv"
-
-  ## - id: methods
-  ##   modules:
-  ##     - id: kmeans
-  ##       software_environment: "clustbench"
-  ##       repository:
-  ##         url: https://github.com/omnibenchmark-example/kmeans.git
-  ##         commit: 049c8b1
-  ##   inputs:
-  ##     - entries:
-  ##         - distances
-  ##   outputs:
-  ##     - id: methods.clusters
-  ##       path: "{input}/{stage}/{module}/{params}/{dataset}.clusters.csv"
+    inputs:
+      - entries:
+          - data.matrix
+    outputs:
+      - id: clustering.labels
+        path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
