@@ -4,6 +4,7 @@ channels:
   - nodefaults
 dependencies:
   - conda-forge::python=3.12.6
+  - conda-forge::pip
   - pip:
     - "clustering-benchmarks"
     - "wget"
