@@ -11,7 +11,16 @@ software_environments:
   clustbench:
     description: "clustbench on py3.12.6"
     conda: envs/clustbench.yml
+  sklearn:
+    description: "Daniel's on py3.12.6"
+    conda: envs/sklearn.yml
+  R:
+    description: "Daniel's R with readr, dplyr, mclust, caret"
+    conda: envs/r.yml
 stages:
+
+  ## clustbench data ##########################################################
+
   - id: data
     modules:
       - id: clustbench
@@ -21,36 +30,39 @@ stages:
           url: https://github.com/imallona/clustbench_data
           commit: 366c5a2
         parameters:
-          - values: ["--dataset_generator", "mnist", "--dataset_name", "fashion"]
+          # - values: ["--dataset_generator", "mnist", "--dataset_name", "fashion"]
           - values: ["--dataset_generator", "other", "--dataset_name", "iris"]
-          - values: ["--dataset_generator", "mnist", "--dataset_name", "digits"]
+          # - values: ["--dataset_generator", "mnist", "--dataset_name", "digits"]
           - values: ["--dataset_generator", "wut", "--dataset_name", "circles"]
           - values: ["--dataset_generator", "wut", "--dataset_name", "cross"]
           - values: ["--dataset_generator", "wut", "--dataset_name", "graph"]
           - values: ["--dataset_generator", "wut", "--dataset_name", "isolation"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "labirynth"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "mk1"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "mk2"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "mk3"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "mk4"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "olympic"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "smile"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "stripes"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "trajectories"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "trapped_lovers"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "twosplashes"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "windows"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "x1"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "x2"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "x3"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "z1"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "z2"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "z3"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "labirynth"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "mk1"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "mk2"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "mk3"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "mk4"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "olympic"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "smile"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "stripes"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "trajectories"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "trapped_lovers"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "twosplashes"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "windows"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "x1"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "x2"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "x3"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "z1"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "z2"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "z3"]
     outputs:
       - id: data.matrix
         path: "{input}/{stage}/{module}/{params}/{dataset}.data.gz"
       - id: data.true_labels
         path: "{input}/{stage}/{module}/{params}/{dataset}.labels0.gz"
+
+  ## clustbench methods (fastcluster) ###################################################################
+  
   - id: clustering
     modules:
       - id: fastcluster
@@ -92,3 +104,89 @@ stages:
     outputs:
       - id: metrics.scores
         path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
+
+  ## daniel's data ###########################################################################
+  
+  - id: danielsdata
+    modules:
+      - id: iris_manual
+        name: "Iris Dataset"
+        software_environment: "sklearn"
+        repository:
+          url: https://github.com/omnibenchmark-example/iris.git
+          commit: 47c63f0
+      - id: penguins
+        name: "Penguins Dataset"
+        software_environment: "sklearn"
+        repository:
+          url: https://github.com/omnibenchmark-example/penguins.git
+          commit: 9032478
+    outputs:
+      - id: data.features
+        path: "{input}/{stage}/{module}/{params}/{dataset}.features.csv"
+      - id: data.labels
+        path: "{input}/{stage}/{module}/{params}/{dataset}.labels.csv"
+  
+  ## daniel's distances ########################################################################
+  
+  - id: distances
+    modules:
+      - id: D1
+        software_environment: "sklearn"
+        parameters:
+          - values: ["--measure", "cosine"]
+          - values: ["--measure", "euclidean"]
+          - values: ["--measure", "manhattan"]
+          - values: ["--measure", "chebyshev"]
+        repository:
+          url: https://github.com/omnibenchmark-example/distance.git
+          commit: dd99d4f
+    inputs:
+      - entries:
+          - data.features
+    outputs:
+      - id: distances
+        path: "{input}/{stage}/{module}/{params}/{dataset}.distances.csv"
+        
+  ## daniel's methods ###################################################################
+  
+  - id: danielmethods
+    modules:
+      - id: kmeans
+        software_environment: "sklearn"
+        repository:
+          url: https://github.com/omnibenchmark-example/kmeans.git
+          commit: 049c8b1
+      - id: ward
+        software_environment: "R"
+        repository:
+          url: https://github.com/omnibenchmark-example/ward.git
+          commit: 976e3f3
+    inputs:
+      - entries:
+          - distances
+    outputs:
+      - id: methods.clusters
+        path: "{input}/{stage}/{module}/{params}/{dataset}.clusters.csv"
+
+  ## daniel's metrics ###################################################################
+
+  - id: danielsmetrics
+    modules:
+      - id: ari
+        software_environment: "R"
+        repository:
+          url: https://github.com/omnibenchmark-example/ari.git
+          commit: 72708f0
+      - id: accuracy
+        software_environment: "R"
+        repository:
+          url: https://github.com/omnibenchmark-example/accuracy.git
+          commit: e26b32f
+    inputs:
+      - entries:
+          - methods.clusters
+          - data.labels
+    outputs:
+      - id: metrics.mapping
+        path: "{input}/{stage}/{module}/{params}/{dataset}.metrics.txt"

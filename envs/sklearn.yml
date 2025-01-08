@@ -1,0 +1,11 @@
+name: sklearn
+channels:
+  - anaconda
+  - conda-forge
+  - nodefaults
+dependencies:
+  - conda-forge::python=3.12.6
+  - conda-forge::pip
+  - anaconda::scikit-learn
+  - pip:
+    - "pandas"
