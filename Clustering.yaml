@@ -1,7 +1,7 @@
 id: clustering_benchmark
-description: Clustering benchmark on Iris and Penguins Dataset.
+description: Clustering benchmark on Gagolewski's, true number of clusters only.
 version: 1.0
-benchmarker: "OmniBenchmark Team at Robinsons Lab"
+benchmarker: "Omnibenchmark Team at Mark D. Robinson lab"
 storage: https://play.min.io
 benchmark_yaml_spec: 0.01
 storage_api: S3
@@ -59,36 +59,36 @@ stages:
         repository:
           url: https://github.com/imallona/clustbench_fastcluster
           # url: /home/imallona/src/clustbench_fastcluster/
-          commit: 7c10dcf
+          commit: "c64aee7"
         parameters:
-          - values: ["--linkage", "complete", '--k', 4]
-          - values: ["--linkage", "ward", '--k', 4]
-          - values: ["--linkage", "average", '--k', 4]
-          - values: ["--linkage", "weighted", '--k', 4]
-          - values: ["--linkage", "median", '--k', 4]                    
-          - values: ["--linkage", "centroid", '--k', 4]          
-
+          - values: ["--linkage", "complete"]
+          - values: ["--linkage", "ward"]
+          - values: ["--linkage", "average"]
+          - values: ["--linkage", "weighted"]
+          - values: ["--linkage", "median"]
+          - values: ["--linkage", "centroid"]
     inputs:
       - entries:
           - data.matrix
+          - data.true_labels
     outputs:
       - id: clustering.predicted
         path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
-  ## - id: metrics
-  ##   modules:
-  ##     - id: partition_metrics
-  ##       name: "clustbench partition metrics"
-  ##       software_environment: "clustbench"
-  ##       repository:
-  ##         url: https://github.com/imallona/clustbench_metrics
-  ##         commit: 64cf5fc
-  ##       parameters:
-  ##         - values: ["--metric", "normalized_clustering_accuracy"]
-  ##         - values: ["--metric", "adjusted_fm_score"]
-  ##   inputs:
-  ##     - entries:
-  ##         - clustering.predicted
-  ##         - data.true_labels
-  ##   outputs:
-  ##     - id: metrics.scores
-  ##       path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
+  - id: metrics
+    modules:
+      - id: partition_metrics
+        name: "clustbench partition metrics"
+        software_environment: "clustbench"
+        repository:
+          url: https://github.com/imallona/clustbench_metrics
+          commit: c48c813
+        parameters:
+          - values: ["--metric", "normalized_clustering_accuracy"]
+          - values: ["--metric", "adjusted_fm_score"]
+    inputs:
+      - entries:
+          - clustering.predicted
+          - data.true_labels
+    outputs:
+      - id: metrics.scores
+        path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
