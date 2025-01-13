@@ -71,7 +71,7 @@ stages:
         repository:
           url: https://github.com/imallona/clustbench_fastcluster
           # url: /home/imallona/src/clustbench_fastcluster/
-          commit: "c64aee7"
+          commit: "d76bf50"
         parameters:
           - values: ["--linkage", "complete"]
           - values: ["--linkage", "ward"]
@@ -84,8 +84,9 @@ stages:
           - data.matrix
           - data.true_labels
     outputs:
-      - id: clustering.predicted
-        path: "{input}/{stage}/{module}/{params}/{dataset}.labels.gz"
+      - id: clustering.predicted_ks_range
+        path: "{input}/{stage}/{module}/{params}/{dataset}_ks_range.labels.gz"
+
   - id: metrics
     modules:
       - id: partition_metrics
@@ -93,13 +94,13 @@ stages:
         software_environment: "clustbench"
         repository:
           url: https://github.com/imallona/clustbench_metrics
-          commit: c48c813
+          commit: 3917c61
         parameters:
           - values: ["--metric", "normalized_clustering_accuracy"]
           - values: ["--metric", "adjusted_fm_score"]
     inputs:
       - entries:
-          - clustering.predicted
+          - clustering.predicted_ks_range
           - data.true_labels
     outputs:
       - id: metrics.scores
