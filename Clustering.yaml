@@ -79,6 +79,16 @@ stages:
           - values: ["--linkage", "weighted"]
           - values: ["--linkage", "median"]
           - values: ["--linkage", "centroid"]
+      - id: sklearn
+        name: "sklearn"
+        software_environment: "clustbench"
+        repository:
+          url: https://github.com/imallona/clustbench_sklearn
+          #url: /home/imallona/src/clustbench_sklearn
+          commit: "5480c3c"
+        parameters:
+          - values: ["--method", "birch"]
+
     inputs:
       - entries:
           - data.matrix
