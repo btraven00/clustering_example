@@ -94,10 +94,19 @@ stages:
         software_environment: "clustbench"
         repository:
           url: https://github.com/imallona/clustbench_metrics
-          commit: 3917c61
+          commit: 9132d45
         parameters:
           - values: ["--metric", "normalized_clustering_accuracy"]
           - values: ["--metric", "adjusted_fm_score"]
+          - values: ["--metric", "adjusted_mi_score"]
+          - values: ["--metric", "adjusted_rand_score"]
+          - values: ["--metric", "fm_score"]
+          - values: ["--metric", "mi_score"]
+          - values: ["--metric", "normalized_clustering_accuracy"]
+          - values: ["--metric", "normalized_mi_score"]
+          - values: ["--metric", "normalized_pivoted_accuracy"]
+          - values: ["--metric", "pair_sets_index"]
+          - values: ["--metric", "rand_score"]
     inputs:
       - entries:
           - clustering.predicted_ks_range
