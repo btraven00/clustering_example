@@ -107,7 +107,7 @@ stages:
         software_environment: "clustbench"
         repository:
           url: https://github.com/imallona/clustbench_metrics
-          commit: 7194ac7
+          commit: 9132d45
         parameters:
           - values: ["--metric", "normalized_clustering_accuracy"]
           - values: ["--metric", "adjusted_fm_score"]
