@@ -92,6 +92,16 @@ stages:
           - values: ["--method", "kmeans"]
           - values: ["--method", "spectral"]
           - values: ["--method", "gm"]
+      - id: agglomerative
+        name: "agglomerative"
+        software_environment: "clustbench"
+        repository:
+          url: https://github.com/imallona/clustbench_agglomerative
+          commit: 737db48
+        parameters:
+          - values: ["--linkage", "average"]
+          - values: ["--linkage", "complete"]
+          - values: ["--linkage", "ward"]
     inputs:
       - entries:
           - data.matrix
