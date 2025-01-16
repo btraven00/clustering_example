@@ -1,0 +1,9 @@
+name: fcps
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - conda-forge::python=3.12.6
+  - conda-forge::r-fcps
+  - conda-forge::r-argparse
+  - conda-forge::r-dbscan

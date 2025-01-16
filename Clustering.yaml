@@ -18,6 +18,9 @@ software_environments:
   R:
     description: "Daniel's R with readr, dplyr, mclust, caret"
     conda: envs/r.yml
+  fcps:
+    description: "CRAN's FCPS"
+    conda: envs/fcps.yml
 stages:
 
   ## clustbench data ##########################################################
@@ -112,6 +115,25 @@ stages:
           - values: ["--method", "genie", "--gini_threshold", 0.5]
           - values: ["--method", "gic"]
           - values: ["--method", "ica"]
+      - id: fcps
+        name: "fcps"
+        software_environment: "fcps"
+        repository:
+          url: https://github.com/imallona/clustbench_fcps
+          commit: 155d042
+        parameters:
+          - values: ["--method", "FCPS_AdaptiveDensityPeak"]
+          - values: ["--method", "FCPS_Minimax"]
+          - values: ["--method", "FCPS_MinEnergy"]
+          - values: ["--method", "FCPS_HDBSCAN_2"]
+          - values: ["--method", "FCPS_HDBSCAN_4"]
+          - values: ["--method", "FCPS_HDBSCAN_8"]
+          - values: ["--method", "FCPS_Diana"]
+          - values: ["--method", "FCPS_Fanny"]
+          - values: ["--method", "FCPS_Hardcl"]
+          - values: ["--method", "FCPS_Softcl"]
+          - values: ["--method", "FCPS_Clara"]
+          - values: ["--method", "FCPS_PAM"]
     inputs:
       - entries:
           - data.matrix
