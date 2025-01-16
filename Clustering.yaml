@@ -102,6 +102,16 @@ stages:
           - values: ["--linkage", "average"]
           - values: ["--linkage", "complete"]
           - values: ["--linkage", "ward"]
+      - id: genieclust
+        name: "genieclust"
+        software_environment: "clustbench"
+        repository:
+          url: https://github.com/imallona/clustbench_genieclust
+          commit: ac1cc2b
+        parameters:
+          - values: ["--method", "genie", "--gini_threshold", 0.5]
+          - values: ["--method", "gic"]
+          - values: ["--method", "ica"]
     inputs:
       - entries:
           - data.matrix
