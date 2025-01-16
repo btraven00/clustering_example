@@ -1,7 +1,7 @@
 id: clustering_benchmark
 description: Clustering benchmark on Gagolewski's, true number of clusters only.
 version: 1.0
-benchmarker: "Omnibenchmark Team at Mark D. Robinson lab"
+benchmarker: "Izaskun Mallona, Daniel Incicau"
 storage: https://play.min.io
 benchmark_yaml_spec: 0.01
 storage_api: S3
@@ -37,7 +37,7 @@ stages:
           # - values: ["--dataset_generator", "mnist", "--dataset_name", "fashion"]
           - values: ["--dataset_generator", "other", "--dataset_name", "iris"]
           # - values: ["--dataset_generator", "mnist", "--dataset_name", "digits"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "circles"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "circles"]
           # - values: ["--dataset_generator", "wut", "--dataset_name", "cross"]
           # - values: ["--dataset_generator", "wut", "--dataset_name", "graph"]
           # - values: ["--dataset_generator", "wut", "--dataset_name", "isolation"]
@@ -120,9 +120,9 @@ stages:
         software_environment: "fcps"
         repository:
           url: https://github.com/imallona/clustbench_fcps
-          commit: 155d042
+          commit: f3b8d21
         parameters:
-          - values: ["--method", "FCPS_AdaptiveDensityPeak"]
+          # - values: ["--method", "FCPS_AdaptiveDensityPeak"] # not in conda
           - values: ["--method", "FCPS_Minimax"]
           - values: ["--method", "FCPS_MinEnergy"]
           - values: ["--method", "FCPS_HDBSCAN_2"]

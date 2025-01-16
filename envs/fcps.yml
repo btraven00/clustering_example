@@ -7,3 +7,5 @@ dependencies:
   - conda-forge::r-fcps
   - conda-forge::r-argparse
   - conda-forge::r-dbscan
+  - conda-forge::r-protoclust
+  - conda-forge::r-energy
