@@ -1,7 +1,8 @@
 name: fcps
 channels:
+  - default
   - conda-forge
-  - nodefaults
+  - anaconda
 dependencies:
   - conda-forge::python=3.12.6
   - conda-forge::r-fcps
