@@ -1,8 +1,7 @@
 name: clustbench
 channels:
-  - default
   - conda-forge
-  - anaconda
+  - nodefaults
 dependencies:
   - conda-forge::python=3.12.6
   - conda-forge::pip
@@ -13,3 +12,4 @@ dependencies:
     - "numpy==1.26.4"
     - "scipy==1.14.1"
     - "genieclust==1.1.6"
+    - "pandas==2.2.3"

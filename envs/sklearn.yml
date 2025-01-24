@@ -1,11 +1,10 @@
 name: sklearn
 channels:
-  - default
-  - anaconda
   - conda-forge
+  - nodefaults
 dependencies:
   - conda-forge::python=3.12.6
-  - anaconda::scikit-learn
+  - conda-forge::scikit-learn
   - conda-forge::pip
   - pip:
     - "pandas"
