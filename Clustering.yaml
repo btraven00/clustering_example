@@ -35,13 +35,13 @@ stages:
           commit: 366c5a2
         parameters:
           # - values: ["--dataset_generator", "mnist", "--dataset_name", "fashion"]
-          - values: ["--dataset_generator", "other", "--dataset_name", "iris"]
+          # - values: ["--dataset_generator", "other", "--dataset_name", "iris"]
           # - values: ["--dataset_generator", "mnist", "--dataset_name", "digits"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "circles"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "circles"]
           - values: ["--dataset_generator", "wut", "--dataset_name", "cross"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "graph"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "isolation"]
-          - values: ["--dataset_generator", "wut", "--dataset_name", "labirynth"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "graph"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "isolation"]
+          # - values: ["--dataset_generator", "wut", "--dataset_name", "labirynth"]
           # - values: ["--dataset_generator", "wut", "--dataset_name", "mk1"]
           # - values: ["--dataset_generator", "wut", "--dataset_name", "mk2"]
           # - values: ["--dataset_generator", "wut", "--dataset_name", "mk3"]
@@ -89,7 +89,7 @@ stages:
         repository:
           url: https://github.com/imallona/clustbench_sklearn
           #url: /home/imallona/src/clustbench_sklearn
-          commit: b05695b
+          commit: 6fadae4
         parameters:
           - values: ["--method", "birch"]
           - values: ["--method", "kmeans"]
