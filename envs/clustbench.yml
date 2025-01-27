@@ -1,0 +1,15 @@
+name: clustbench
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - conda-forge::python=3.12.6
+  - conda-forge::pip
+  - pip:
+    - "clustering-benchmarks==1.1.5"
+    - "wget"
+    - "fastcluster==1.2.6"
+    - "numpy==1.26.4"
+    - "scipy==1.14.1"
+    - "genieclust==1.1.6"
+    - "pandas==2.2.3"
