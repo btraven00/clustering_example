@@ -33,6 +33,3 @@ From: ubuntu:jammy-20240911.1
 %environment
 
     . /opt/default/bin/activate
-    echo $PATH
-    python --version
-    python3.12 --version
