@@ -2,10 +2,10 @@ A clustering example for omnibenchmark
 
 # How to run
 
-1. Install omnibenchmark with conda capabilities using [our tutorial](https://omnibenchmark.org/tutorial/)
-2. Clone the benchmark definition / this repository with `git clone --branch gagolewski git@github.com:omnibenchmark/clustering_example.git`
+1. Install omnibenchmark using [our tutorial](https://omnibenchmark.org/tutorial/)
+2. Clone the benchmark definition / this repository with `git clone git@github.com:omnibenchmark/clustering_example.git`
 3. Move to the cloned repository `cd clustering_example`
-4. Run locally, somewhat in parallel `ob run benchmark -b Clustering.yaml  --local --threads 6` (do not use lots of threads, this version uses conda and filesystem latency can be a problem)
+4. Run locally, somewhat in parallel `ob run benchmark -b CLUSTERING.YAML  --local --threads 6`. Choose `Clustering.yml` specification based on whether running it with conda, easybuild, apptainer, etc. [More details about the available backends](https://github.com/omnibenchmark/clustering_example/blob/main/envs/README.md).
 
 # Clustbench attribution
 

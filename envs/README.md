@@ -1,7 +1,10 @@
-We distribute `Clustering.yml` runs with different backends. Planned are:
-- conda semi-reproducible (no pinning, pip)
-- singularity semi-reproducible
-- easybuild with several optimization strategies (ongoing)
+We distribute `Clustering.yml` runs with different backends.
+
+- `Clustering_conda.yml`. Conda semi-reproducible (no pinning, pip)
+- `Clustering_singularity.yml`. Singularity semi-reproducible, local SIF files.
+- `Clustering_oras.yml`. Singularity semi-reproducible, prebuilt remote images.
+- `Clustering_envmodules.yml`. Easybuilt with default optimization.
+
 
 ## Conda
 
@@ -14,9 +17,9 @@ We distribute `Clustering.yml` runs with different backends. Planned are:
 
 ### How to build
 
-No need to `ob software conda pin / prepare`; just let `ob run benchmark -b Clustering.yml --local` do it.
+No need to `ob software conda pin / prepare`; let `ob run benchmark -b Clustering_conda.yml --local` do it.
 
-## Apptainer dirty
+## Apptainer semi-reproducible and local
 
 ### Files
 
@@ -28,13 +31,18 @@ No need to `ob software conda pin / prepare`; just let `ob run benchmark -b Clus
 ### How to build
 
 - `build_singularity.sh`
-- todo push to some ORAS-compatible registry
 
-## Apptainer with easybuild
+## Aptainer semi-reproducible and remote
+
+No need to prepare/build anything; let `ob run benchmark -b Clustering_oras.yml --local` do it using pre-built images from https://gitlab.renkulab.io/izaskun.mallona/clustering_example/container_registry.
+
+## Apptainer (reproducible) with easybuild
+
+Doing...
 
 Lorem ipsum.
 
-## Easybuild
+## envmodules - reproducible builds with easybuild
 
 ### Files
 
