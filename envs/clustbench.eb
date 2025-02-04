@@ -67,27 +67,35 @@ source_urls = [PYPI_SOURCE,
 ## todo automate this within the easyconfig!
 
 exts_list = [
-    ## ('meson_python', '0.17.1'),
-    ## ('pybind11', '2.13.6'),
-    ## ('cycler', '0.12.1'),
-    ## ('matplotlib', '3.9.0'),
-    ('natsort', '8.4.0'),
-    ('cython', '3.0.11'),
-    ('hypothesis', '6.124.7'),
-    ('numpy', '1.26.4'),
-    ('fastcluster', '1.2.6'),
-    ('genieclust', '1.1.6'), 
-    ## ('wget', '3.2'), ## skipped because shipped as a zipfile (?) these wgets are not maintained
-    ('hurry.filesize', '0.9'),
-    ('python3-wget', '0.0.2-beta1', {
-       'modulename': 'wget'
+    ('natsort', '8.4.0', {
+        'checksums': ['45312c4a0e5507593da193dedd04abb1469253b601ecaf63445ad80f0a1ea581'],
     }),
-    ## ('joblib', '1.4.2'),
-    ## ('threadpoolctl', '3.5.0'),
-    ## ('scikit-learn', '1.4.2'), #'1.6.1'),
+    ('cython', '3.0.11', {
+        'checksums': ['7146dd2af8682b4ca61331851e6aebce9fe5158e75300343f80c07ca80b1faff'],
+    }),
+    ('hypothesis', '6.124.7', {
+        'checksums': ['8ed6c6ae47e7d26d869c1dc3dee04e8fc50c95240715bb9915ded88d6d920f0e'],
+    }),
+    ('numpy', '1.26.4', {
+        'checksums': ['2a02aba9ed12e4ac4eb3ea9421c420301a0c6460d9830d74a9df87efa4912010'],
+    }),
+    ('fastcluster', '1.2.6', {
+        'checksums': ['aab886efa7b6bba7ac124f4498153d053e5a08b822d2254926b7206cdf5a8aa6'],
+    }),
+    ('genieclust', '1.1.6', {
+        'checksums': ['fb5b4ff68eef9e73496afa5949e726c8522c72e51f092716a6a598b03d5c09d6'],
+    }),
+    ('hurry.filesize', '0.9', {
+        'checksums': ['f5368329adbef86accd3bc9490522340bb79260455ae89b1a42c10f63801b9a6'],
+    }),
+    ('python3-wget', '0.0.2-beta1', {
+        'modulename': 'wget',
+        'checksums': ['bbe7f44b3c28c4f7126aff20e8a438e78f6e4f1878d8b0c4940e87363813c17d'],
+    }),
     ('clustering_benchmarks', '1.1.5', {
-       'modulename': 'clustbench'
-    })
+        'modulename': 'clustbench',
+        'checksums': ['1732c262fb13be2f88814ef9a19c60108e91a7f6cfb9b960a42feaa299034ea3'],
+    }),
 ]
 
 sanity_check_paths = {
