@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rocker/tidyverse:4.4
+From: rocker/tidyverse:4.3.3
 
 %labels
 
@@ -10,7 +10,8 @@ From: rocker/tidyverse:4.4
     # Install python3.12
     apt-get update
     apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev \
-        libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev python-is-python3 git
+        libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev python-is-python3 git \
+        libgsl-dev
 
     wget https://www.python.org/ftp/python/3.12.6/Python-3.12.6.tgz
     tar -xf Python-3.12.6.tgz
@@ -25,8 +26,9 @@ From: rocker/tidyverse:4.4
     . default/bin/activate
 
     pip install gitpython==3.1.43 isodate pydantic-core
-    
-    Rscript -e 'BiocManager::install(c("FCPS", "dbscan", "protoclust", "energy", "argparse"))'
+
+    ## no versioning here
+    Rscript -e 'BiocManager::install(c( "dbscan", "cluster", "protoclust", "energy", "argparse", "mclust", "DataVisualizations", "FCPS", "cclust"))'
 
     echo '. /opt/default/bin/activate' >> $SINGULARITY_ENVIRONMENT
 

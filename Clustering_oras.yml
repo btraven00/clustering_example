@@ -127,7 +127,7 @@ stages:
         software_environment: "fcps"
         repository:
           url: https://github.com/imallona/clustbench_fcps
-          commit: f1074de
+          commit: 272fa5f
         parameters:
           # - values: ["--method", "FCPS_AdaptiveDensityPeak"] # not in conda
           - values: ["--method", "FCPS_Minimax"]
