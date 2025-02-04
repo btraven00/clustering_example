@@ -11,3 +11,6 @@ dependencies:
   - conda-forge::r-protoclust==1.6.4
   - conda-forge::r-energy==1.7-12
   - conda-forge::r-datavisualizations==1.3.3
+  - conda-forge::r-cluster==2.1.8
+  - conda-forge::r-mclust==6.1.1
+  #- r::r-cclust=0.6_24
