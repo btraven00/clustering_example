@@ -198,6 +198,7 @@ exts_list = [
     ('mclust', '6.1.1', {
         'checksums': ['ddd7018e5e6ea7f92c7fc9872b391491b7e91c2cd89ef1dcaf4408afb5116775'],
     }),
+    ('ccclust', '0.6-26'),
     ('flowClust', '3.40.0', {
         'installopts': "--configure-args='--with-gsl=${EBROOTGSL} --enable-bundled-gsl=false'",
         'checksums': ['7e699b06e378e32144704dbec18289109980b0f5eca166180f2c30007b83e0f5'],

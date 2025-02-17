@@ -19,35 +19,16 @@ From [Are cluster validity measures (in) valid?](https://www.sciencedirect.com/s
 
 > The original benchmark battery consists of 79 data instances, however 16 datasets are accompanied by labels that yield ; they were omitted for their computation would be too lengthy (namely: mnist/digits, mnist/fashion, other/chameleon_t7_10k, other/chameleon_t8_8k, sipu/a1, sipu/a2, sipu/a3, sipu/birch1, sipu/birch2, sipu/d31, sipu/s1, sipu/s2, sipu/s3, sipu/s4, sipu/worms_2, sipu/worms_64). Also uci/glass has been removed as one of its 25-near-neighbour graph’s connected components was too small for the NN-based methods to succeed. This leaves us with 62 datasets in total, see Table 1.
 
+A yaml such as [0a88c91](https://github.com/omnibenchmark/clustering_example/blob/0a88c910bbda62d1b593f4215a682770227f39ff/Clustering.yaml) with 30 cores should run half of the stuff in ~4 h and reach 97% completion in ~8h.
+
 # Summary
 
-- Data
+- Data. Example datasets (not a comprehensive list, it's >79 of them):
   - https://github.com/imallona/clustbench_data 
     - args: ["--dataset_generator", "mnist", "--dataset_name", "fashion"]
     - args: ["--dataset_generator", "other", "--dataset_name", "iris"]
     - args: ["--dataset_generator", "mnist", "--dataset_name", "digits"]
     - args: ["--dataset_generator", "wut", "--dataset_name", "circles"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "cross"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "graph"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "isolation"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "labirynth"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "mk1"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "mk2"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "mk3"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "mk4"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "olympic"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "smile"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "stripes"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "trajectories"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "trapped_lovers"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "twosplashes"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "windows"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "x1"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "x2"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "x3"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "z1"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "z2"]
-    - args: ["--dataset_generator", "wut", "--dataset_name", "z3"]
 - Method families/providers (they include several methods each)
   - https://github.com/imallona/clustbench_fastcluster
     - args: ["--linkage", "complete"]

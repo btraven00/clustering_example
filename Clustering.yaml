@@ -133,7 +133,7 @@ stages:
         repository:
           url: https://github.com/imallona/clustbench_fastcluster
           # url: /home/imallona/src/clustbench_fastcluster/
-          commit: 29550f3 # "45e43d3" ## "29550f3" THE 29 ONE IS IS TO MAKE IT FAIL FOR TESTING THE KEEPGOING #################################################
+          commit: "45e43d3"
         parameters:
           - values: ["--linkage", "complete"]
           - values: ["--linkage", "ward"]
