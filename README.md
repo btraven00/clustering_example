@@ -11,6 +11,14 @@ A clustering example for omnibenchmark
 
 by Marek Gagolewski, modified by Izaskun Mallona
 
+# Data disclaimer
+
+Some datasets are commented out to speed up calculations.
+
+From [Are cluster validity measures (in) valid?](https://www.sciencedirect.com/science/article/pii/S0020025521010082):
+
+> The original benchmark battery consists of 79 data instances, however 16 datasets are accompanied by labels that yield ; they were omitted for their computation would be too lengthy (namely: mnist/digits, mnist/fashion, other/chameleon_t7_10k, other/chameleon_t8_8k, sipu/a1, sipu/a2, sipu/a3, sipu/birch1, sipu/birch2, sipu/d31, sipu/s1, sipu/s2, sipu/s3, sipu/s4, sipu/worms_2, sipu/worms_64). Also uci/glass has been removed as one of its 25-near-neighbour graph’s connected components was too small for the NN-based methods to succeed. This leaves us with 62 datasets in total, see Table 1.
+
 # Summary
 
 - Data
