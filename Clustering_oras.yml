@@ -1,9 +1,9 @@
 id: clustering_example
 description: Clustering benchmark on Gagolewski's, true number of clusters plus minus 2. Caution dirty apptainer sifs.
-version: 1.1_root_apptainer
+version: 1.2
 benchmarker: "Izaskun Mallona, Daniel Incicau"
 storage: https://play.min.io
-benchmark_yaml_spec: 0.01
+benchmark_yaml_spec: 0.04
 storage_api: S3
 storage_bucket_name: clustering_example
 software_backend: apptainer
