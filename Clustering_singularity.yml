@@ -1,11 +1,11 @@
-id: clustering_example
+id: clustering_example_apptainer
 description: Clustering benchmark on Gagolewski's, true number of clusters plus minus 2.
-version: 1.2
+version: 1.4
 benchmarker: "Izaskun Mallona, Daniel Incicau"
-storage: https://play.min.io
+storage: http://omnibenchmark.org:9000
 benchmark_yaml_spec: 0.04
 storage_api: S3
-storage_bucket_name: clustering_example
+storage_bucket_name: clusteringexampleapptainer
 software_backend: apptainer
 software_environments:
   clustbench:
@@ -23,24 +23,40 @@ software_environments:
     conda: envs/r.yml
     apptainer: envs/r.sif
     envmodule: fcps # not true, but
+  rmarkdown:
+    description: "R with some plotting dependencies"
+    conda: envs/rmarkdown.yml
+    apptainer: envs/r.sif # not true, but
+    envmodule: fcps # not true, but
   fcps:
     description: "CRAN's FCPS"
     conda: envs/fcps.yml
     apptainer: envs/fcps.sif
     envmodule: fcps
+metric_collectors:
+  - id: plotting
+    name: "Single-backend metric collector."
+    software_environment: "rmarkdown"
+    repository:
+      url: https://github.com/imallona/clustering_report
+      commit: f1a5876
+    inputs:
+      - metrics.scores
+    outputs:
+      - id: plotting.html
+        path: "{input}/{name}/plotting_report.html"
 stages:
-
   ## clustbench data ##########################################################
 
   - id: data
     modules:
       - id: clustbench
-        name: "clustbench datasets"
+        name: "clustbench datasets, from https://www.sciencedirect.com/science/article/pii/S0020025521010082#t0005 Table1"
         software_environment: "clustbench"
         repository:
           url: https://github.com/imallona/clustbench_data
           commit: 366c5a2
-        parameters:
+        parameters:  # comments depict the possible cardinalities and the number of curated labelsets
           - values: ["--dataset_generator", "fcps", "--dataset_name", "atom"] #	2	1
           - values: ["--dataset_generator", "fcps", "--dataset_name", "chainlink"] #	2	1
           - values: ["--dataset_generator", "fcps", "--dataset_name", "engytime"] #	2	2
