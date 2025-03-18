@@ -1,5 +1,6 @@
 MAX_THREADS ?= 30
-OB_CMD="ob run benchmark -k --local"
+# by default, we want to run all snakemake rules even if there are failures
+OB_CMD=ob run benchmark -k --local
 prepare_apptainer_env:
 	cd envs && ./build_singularity.sh
 run_with_apptainer_backend:
