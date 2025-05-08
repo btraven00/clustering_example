@@ -13,6 +13,7 @@ dependencies = [
     ('SciPy-bundle', '2023.11'),
     ('matplotlib', '3.8.2'),
     ('scikit-learn', '1.4.0'),
+# FIXME: I think this is not needed -- ben
 #    ('meson-python', '0.15.0'),
 #    ('Python-bundle-PyPI', '2023.10'), ## so GCC 13.2.0 like foss-2023b
 ]
@@ -39,6 +40,10 @@ exts_list = [
         'download_dep_fail': False,
         'install_src': 'https://files.pythonhosted.org/packages/2a/09/d1fd7b02cfabe76262d0f88d74fa71dc93e857525f8249539ec5ab174292/genieclust-1.1.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl',
         'checksums': ['4c159f507b84b6d6d171883223648d837c520a9bcce650944a6ee0cb320e2151'],
+    }),
+    ('clustering_benchmarks', '1.1.6', {
+        'modulename': 'clustbench',
+        'checksums': ['8c3ac0aed7c4c4925df6e5000db29aed6359341bd1ef2e516f230e13d8b66a0c'],
     }),
 ]
 
