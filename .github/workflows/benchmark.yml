@@ -67,7 +67,7 @@ jobs:
     name: Benchmark Artifact
     runs-on: ubuntu-latest
     needs: run-benchmark
-    if: always()
+    if: github.ref == 'refs/heads/main' && github.repository_owner == 'omnibenchmark'
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
