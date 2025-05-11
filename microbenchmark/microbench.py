@@ -17,6 +17,8 @@ import time
 import json
 from statistics import mean, stdev
 
+DEFAULT_REPETITIONS = 10
+
 def run_operation(operation, func, repetitions):
     timings = []
     for _ in range(repetitions):
@@ -31,7 +33,7 @@ def run_operation(operation, func, repetitions):
         'runs': repetitions
     }
 
-def benchmark(repetitions=50):
+def benchmark(repetitions=DEFAULT_REPETITIONS):
     np.random.seed(42)
     size = 1000
 
@@ -63,5 +65,5 @@ def benchmark(repetitions=50):
 
 if __name__ == "__main__":
     import sys
-    repetitions = int(sys.argv[1]) if len(sys.argv) > 1 else 10
+    repetitions = int(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_REPETITIONS
     benchmark(repetitions)
