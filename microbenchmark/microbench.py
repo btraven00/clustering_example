@@ -11,6 +11,8 @@ Usage:
 
 singularity exec clustbench-vanilla.sif python3 microbench.py
 singularity exec clustbench-optimized.sif python3 microbench.py
+
+References: https://pythonspeed.com/articles/faster-python/
 """
 import numpy as np
 import time
