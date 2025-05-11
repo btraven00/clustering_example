@@ -4,6 +4,7 @@ From: rocker/tidyverse:4.3.3
 %labels
 
     AUTHOR izaskun.mallona@gmail.com
+    AUTHOR ben.uzh@proton.me
 
 %post
 
@@ -13,11 +14,11 @@ From: rocker/tidyverse:4.3.3
         libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev python-is-python3 git \
         libgsl-dev
 
-    wget https://www.python.org/ftp/python/3.12.6/Python-3.12.6.tgz
-    tar -xf Python-3.12.6.tgz
+    wget https://www.python.org/ftp/python/3.12.9/Python-3.12.9.tgz
+    tar -xf Python-3.12.9.tgz
     cd Python-3.12.*/
     ./configure --enable-optimizations
-    make -j 4
+    make -j 8
     make altinstall
 
     # virtualenv
@@ -25,13 +26,15 @@ From: rocker/tidyverse:4.3.3
     python3.12 -m venv "default"
     . default/bin/activate
 
+    # TODO: pin dependencies
     pip install gitpython==3.1.43 isodate pydantic-core
 
     ## no versioning here
+    ## TODO(ben): get same versions as in easyconfig
     Rscript -e 'BiocManager::install(c( "dbscan", "cluster", "protoclust", "energy", "argparse", "mclust", "DataVisualizations", "FCPS", "cclust"))'
 
     echo '. /opt/default/bin/activate' >> $SINGULARITY_ENVIRONMENT
 
 %environment
-    
+
     . /opt/default/bin/activate

@@ -1,38 +1,32 @@
 id: clustering_example_apptainer
+
 description: Clustering benchmark on Gagolewski's, true number of clusters plus minus 2.
-version: 1.4
-benchmarker: "Izaskun Mallona, Daniel Incicau"
-storage: http://omnibenchmark.org:9000
-benchmark_yaml_spec: 0.04
-storage_api: S3
-storage_bucket_name: clusteringexampleapptainer
+version: 1.5
+benchmarker: "Izaskun Mallona, Daniel Incicau, Ben Carrillo"
+benchmark_yaml_spec: 0.4
+
 software_backend: apptainer
+
 software_environments:
+
   clustbench:
     description: "clustbench on py3.12.6"
-    conda: envs/clustbench.yml
-    envmodule: clustbench
-    apptainer: envs/clustbench.sif
-  sklearn:
-    description: "Daniel's on py3.12.6"
-    conda: envs/sklearn.yml
-    apptainer: envs/sklearn.sif
-    envmodule: clustbench # not true, but
-  R:
-    description: "Daniel's R with readr, dplyr, mclust, caret"
-    conda: envs/r.yml
-    apptainer: envs/r.sif
-    envmodule: fcps # not true, but
+    conda: envs/clustbench.yml # not used
+    envmodule: na
+    apptainer: envs/clustbench-optimized.sif
+
   rmarkdown:
     description: "R with some plotting dependencies"
-    conda: envs/rmarkdown.yml
-    apptainer: envs/r.sif # not true, but
-    envmodule: fcps # not true, but
+    conda: envs/rmarkdown.yml # not used
+    envmodule: na
+    apptainer: envs/rmarkdown.sif
+
   fcps:
     description: "CRAN's FCPS"
     conda: envs/fcps.yml
+    envmodule: na
     apptainer: envs/fcps.sif
-    envmodule: fcps
+
 metric_collectors:
   - id: plotting
     name: "Single-backend metric collector."
@@ -45,10 +39,11 @@ metric_collectors:
     outputs:
       - id: plotting.html
         path: "{input}/{name}/plotting_report.html"
+
 stages:
-  ## clustbench data ##########################################################
 
   - id: data
+    ## clustbench data
     modules:
       - id: clustbench
         name: "clustbench datasets, from https://www.sciencedirect.com/science/article/pii/S0020025521010082#t0005 Table1"
@@ -229,89 +224,3 @@ stages:
     outputs:
       - id: metrics.scores
         path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
-
-  # ## daniel's data ###########################################################################
-  
-  # - id: danielsdata
-  #   modules:
-  #     - id: iris_manual
-  #       name: "Iris Dataset"
-  #       software_environment: "sklearn"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/iris.git
-  #         commit: 47c63f0
-  #     - id: penguins
-  #       name: "Penguins Dataset"
-  #       software_environment: "sklearn"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/penguins.git
-  #         commit: 9032478
-  #   outputs:
-  #     - id: data.features
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.features.csv"
-  #     - id: data.labels
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.labels.csv"
-  
-  # ## daniel's distances ########################################################################
-  
-  # - id: distances
-  #   modules:
-  #     - id: D1
-  #       software_environment: "sklearn"
-  #       parameters:
-  #         - values: ["--measure", "cosine"]
-  #         - values: ["--measure", "euclidean"]
-  #         - values: ["--measure", "manhattan"]
-  #         - values: ["--measure", "chebyshev"]
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/distance.git
-  #         commit: dd99d4f
-  #   inputs:
-  #     - entries:
-  #         - data.features
-  #   outputs:
-  #     - id: distances
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.distances.csv"
-        
-  # ## daniel's methods ###################################################################
-  
-  # - id: danielmethods
-  #   modules:
-  #     - id: kmeans
-  #       software_environment: "sklearn"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/kmeans.git
-  #         commit: 049c8b1
-  #     - id: ward
-  #       software_environment: "R"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/ward.git
-  #         commit: 976e3f3
-  #   inputs:
-  #     - entries:
-  #         - distances
-  #   outputs:
-  #     - id: methods.clusters
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.clusters.csv"
-
-  # ## daniel's metrics ###################################################################
-
-  # - id: danielsmetrics
-  #   modules:
-  #     - id: ari
-  #       software_environment: "R"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/ari.git
-  #         commit: 72708f0
-  #     - id: accuracy
-  #       software_environment: "R"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/accuracy.git
-  #         commit: e26b32f
-  #   inputs:
-  #     - entries:
-  #         - methods.clusters
-  #         - data.labels
-  #   outputs:
-  #     - id: metrics.mapping
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.metrics.txt"

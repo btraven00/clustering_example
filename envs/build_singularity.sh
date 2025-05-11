@@ -1,7 +1,6 @@
 #!/bin/sh
 CMD=singularity
 BUILD=build --fakeroot
-$CMD $BUILD sklearn_optimized.sif sklearn_singularity_optimized.def
-$CMD $BUILD clustbench-optimized.sif clustbench_singularity.def
-$CMD $BUILD r.sif r_singularity.def
-$CMD $BUILD fcps.sif fcps_singularity.def
+$CMD $BUILD clustbench-vanilla.sif clustbench_apptainer_vanillapy.def
+$CMD $BUILD clustbench-optimized.sif clustbench_apptainer_optimized.def
+$CMD $BUILD fcps.sif fcps_singularity_optimized.def
