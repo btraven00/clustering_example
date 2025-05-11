@@ -6,9 +6,19 @@ From: ubuntu:noble-20250404
     Author ben.uzh@proton.me
 
 %post
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update && \
+        apt-get install -y \
+        python3 \
+        python3-venv \
+        python3-pip \
+        ca-certificates \
+        && apt-get clean && \
+        rm -rf /var/lib/apt/lists/*
+
     # Create virtualenv using the default Python
     mkdir -p /opt && cd /opt
-    python3.12 -m venv "default"
+    /usr/bin/python3 -m venv "default"
     . default/bin/activate
 
     # Install required packages with pip
@@ -46,6 +56,8 @@ From: ubuntu:noble-20250404
     # TODO: can we use something more maintained?
     pip install --pre "python3-wget==0.0.2-beta1"
 
+    # Do some cleanup to keep the image slim
+    rm -rf ~/.cache
 
     echo '. /opt/default/bin/activate' >> $SINGULARITY_ENVIRONMENT
 
