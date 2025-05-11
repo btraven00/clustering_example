@@ -37,6 +37,7 @@ From: ubuntu:noble-20250404
 
     # Download and build Python from source, with optimizations
 
+    mkdir ~/src && cd src
     wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
     tar -xf Python-${PYTHON_VERSION}.tgz
     cd Python-${PYTHON_VERSION}*/
@@ -92,6 +93,7 @@ From: ubuntu:noble-20250404
 
     # Do some cleanup to keep the image slim
     rm -rf ~/.cache
+    rm -rf ~/src
 
     echo '. /opt/default/bin/activate' >> $SINGULARITY_ENVIRONMENT
 
