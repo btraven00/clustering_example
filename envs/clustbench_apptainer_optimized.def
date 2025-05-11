@@ -10,6 +10,7 @@ From: ubuntu:noble-20250404
     PYTHON_MAJOR_VERSION=$(echo $PYTHON_VERSION | cut -d. -f1,2)
 
     # Update and enable deb-src
+    export DEBIAN_FRONTEND=noninteractive
     apt-get update
     echo "deb-src http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse" >> /etc/apt/sources.list
     echo "deb-src http://archive.ubuntu.com/ubuntu/ noble-updates main restricted universe multiverse" >> /etc/apt/sources.list
@@ -19,19 +20,33 @@ From: ubuntu:noble-20250404
     apt-get build-dep -y python3
 
     # Extra dependencies
-    apt-get install -y git python-is-python3 wget zlib1g-dev libbz2-dev libssl-dev libffi-dev
+    apt-get install -y git \
+        python-is-python3 \
+        wget \
+        zlib1g-dev \
+        libbz2-dev \
+        libssl-dev \
+        libffi-dev \
+        && apt-get clean && \
+        rm -rf /var/lib/apt/lists/*
 
     # Calculate half the number of available cores
     HALF_NPROC=$(( $(nproc) / 2 ))
     # Ensure at least one core is used
     CORES_TO_USE=$(( HALF_NPROC > 0 ? HALF_NPROC : 1 ))
 
-    # Download and build Python with optimizations
+    # Download and build Python from source, with optimizations
+
     wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
     tar -xf Python-${PYTHON_VERSION}.tgz
     cd Python-${PYTHON_VERSION}*/
+
     # Enable all possible optimizations
-    ./configure --enable-optimizations --with-lto --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
+    ./configure \
+        --enable-optimizations \
+        --with-lto \
+        --enable-shared \
+        LDFLAGS="-Wl,-rpath /usr/local/lib"
     make -j ${CORES_TO_USE}
     make altinstall
 
@@ -75,6 +90,8 @@ From: ubuntu:noble-20250404
     # TODO: can we use something more maintained?
     pip install --pre "python3-wget==0.0.2-beta1"
 
+    # Do some cleanup to keep the image slim
+    rm -rf ~/.cache
 
     echo '. /opt/default/bin/activate' >> $SINGULARITY_ENVIRONMENT
 
