@@ -6,7 +6,7 @@ From: ubuntu:noble-20250404
     Author ben.uzh@proton.me
 
 %post
-    PYTHON_VERSION=3.12.6
+    PYTHON_VERSION=3.12.9
     PYTHON_MAJOR_VERSION=$(echo $PYTHON_VERSION | cut -d. -f1,2)
 
     # Update and enable deb-src
