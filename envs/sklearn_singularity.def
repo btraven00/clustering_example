@@ -8,25 +8,25 @@ From: ubuntu:noble-20250404
 %post
     PYTHON_VERSION=3.12.6
     PYTHON_MAJOR_VERSION=$(echo $PYTHON_VERSION | cut -d. -f1,2)
-    
+
     # Update and enable deb-src
     apt-get update
     echo "deb-src http://archive.ubuntu.com/ubuntu/ noble main restricted universe multiverse" >> /etc/apt/sources.list
     echo "deb-src http://archive.ubuntu.com/ubuntu/ noble-updates main restricted universe multiverse" >> /etc/apt/sources.list
     apt-get update
 
-    
+
     # Get build dependencies for Python
     apt-get build-dep -y python3
 
     # Extra dependencies
     apt-get install -y git python-is-python3 wget zlib1g-dev libbz2-dev libssl-dev libffi-dev
-    
+
     # Calculate half the number of available cores
     HALF_NPROC=$(( $(nproc) / 2 ))
     # Ensure at least one core is used
     CORES_TO_USE=$(( HALF_NPROC > 0 ? HALF_NPROC : 1 ))
-    
+
     # Download and build Python with optimizations
     wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz
     tar -xf Python-${PYTHON_VERSION}.tgz
@@ -35,16 +35,15 @@ From: ubuntu:noble-20250404
     ./configure --enable-optimizations --with-lto --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
     make -j ${CORES_TO_USE}
     make altinstall
-    
+
     # Create virtualenv using the locally built Python
     cd /opt
     /usr/local/bin/python${PYTHON_MAJOR_VERSION} -m venv "default"
     . default/bin/activate
-    
-    # Install required packages
-    pip3 install "clustering-benchmarks==1.1.5" "wget" "fastcluster==1.2.6" "numpy==1.26.4" "scipy==1.14.1" \
-      "isodate" "pydantic-core"  \
-      "genieclust==1.1.6" "pandas==2.2.3" "gitpython==3.1.43"
+
+    # Install required packages with pip
+
+    % include sklearn-pip.apptainer.include
 
     echo '. /opt/default/bin/activate' >> $SINGULARITY_ENVIRONMENT
 

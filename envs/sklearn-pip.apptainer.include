@@ -1,0 +1,11 @@
+    pip3 install \
+      "clustering-benchmarks==1.1.6" \
+      "fastcluster==1.2.6" \
+      "numpy==1.26.4" \
+      "scipy==1.14.1" \
+      "isodate" \
+      "pydantic-core"  \
+      "genieclust==1.1.6" \
+      "pandas==2.2.3" \
+      "gitpython==3.1.43" \
+      wget"
