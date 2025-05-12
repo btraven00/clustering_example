@@ -18,7 +18,7 @@ software_environments:
   rmarkdown:
     description: "R with some plotting dependencies"
     conda: envs/rmakrkdown.yml # not used
-    envmodule: rmarkdown
+    envmodule: rmarkdown/0.1.0-gfbf-2024a-r-4.4.2
     apptainer: na
 
   fcps:
@@ -44,7 +44,6 @@ metric_collectors:
 stages:
 
   - id: data
-    ## clustbench data
     modules:
       - id: clustbench
         name: "clustbench datasets, from https://www.sciencedirect.com/science/article/pii/S0020025521010082#t0005 Table1"
