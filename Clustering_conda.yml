@@ -15,16 +15,16 @@ software_environments:
     envmodule: clustbench
     apptainer: na
 
-  rmarkdown:
-    description: "R with some plotting dependencies"
-    conda: envs/rmarkdown.yml
-    envmodule: fcps # not used
-    apptainer: na
-
   fcps:
     description: "CRAN's FCPS"
     conda: envs/fcps.yml
     envmodule: fcps
+    apptainer: na
+
+  rmarkdown:
+    description: "R with some plotting dependencies"
+    conda: envs/rmarkdown.yml
+    envmodule: fcps # not used
     apptainer: na
 
 metric_collectors:
