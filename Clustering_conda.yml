@@ -30,7 +30,7 @@ software_environments:
 metric_collectors:
   - id: plotting
     name: "Single-backend metric collector."
-    software_environment: "rmarkdown"
+    software_environment: rmarkdown
     repository:
       url: https://github.com/imallona/clustering_report
       commit: 1d6bdf5
