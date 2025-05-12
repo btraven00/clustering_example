@@ -1,6 +1,8 @@
 Bootstrap: docker
 From: rocker/tidyverse:4.4
 
+# TODO: we could merge this one with fcps.def, no need to duplicate the image.
+
 %labels
 
     AUTHOR izaskun.mallona@gmail.com
