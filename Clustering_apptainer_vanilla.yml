@@ -10,9 +10,9 @@ software_backend: apptainer
 software_environments:
 
   clustbench:
-    description: "clustbench on py3.12.6"
-    conda: envs/clustbench.yml # not used
+    description: "clustbench on py3.12.3, default python"
     envmodule: na
+    conda: envs/clustbench.yml # not used
     apptainer: envs/clustbench-vanilla.sif
 
   fcps:
