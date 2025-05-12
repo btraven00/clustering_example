@@ -13,9 +13,6 @@ dependencies = [
     ('SciPy-bundle', '2023.11'),
     ('matplotlib', '3.8.2'),
     ('scikit-learn', '1.4.0'),
-# FIXME: I think this is not needed -- ben
-#    ('meson-python', '0.15.0'),
-#    ('Python-bundle-PyPI', '2023.10'), ## so GCC 13.2.0 like foss-2023b
 ]
 
 exts_list = [
@@ -48,5 +45,3 @@ exts_list = [
 ]
 
 moduleclass = 'bio'
-
-

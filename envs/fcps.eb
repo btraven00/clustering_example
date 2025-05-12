@@ -13,7 +13,7 @@ builddependencies = [('pkgconf', '1.9.5')]
 
 dependencies = [
     ('R', '4.3.2'),
-    ('Boost', '1.82.0'), 
+    ('Boost', '1.82.0'),
     ('GSL', '2.7'),
 ]
 
