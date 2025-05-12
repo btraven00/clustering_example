@@ -1,6 +1,9 @@
 MAX_CORES ?= 10
+TIMEOUT ?= 4h
+
 # by default, we want to run all snakemake rules even if there are failures (-k)
-OB_CMD=ob run benchmark -k --local --task-timeout "4h" --cores ${MAX_CORES}
+OB_CMD=ob run benchmark -k --local --task-timeout ${TIMEOUT} --cores ${MAX_CORES}
+
 prepare_apptainer_env:
 	cd envs && ./build_singularity.sh
 prepare_envmodules_env:
@@ -14,7 +17,7 @@ run_with_apptainer_backend_short:
 	 mv out out_apptainer_short
 run_with_conda_backend_short:
 	 ${OB_CMD} -b Clustering_conda_smoketest.yml
-	 mv out out_conda
+	 mv out out_conda_short
 run_with_envmodules_backend_short:
 	 ${OB_CMD} -b Clustering_envmodules_smoketest.yml
 	 mv out out_lmod_short
