@@ -1,6 +1,6 @@
-id: clustering_example_apptainer_optimized
-description: Clustering benchmark on Gagolewski's, true number of clusters plus minus 2.
+id: clustering_example_apptainer_vanilla
 
+description: Clustering benchmark on Gagolewski's, true number of clusters plus minus 2.
 version: 1.5
 benchmarker: "Izaskun Mallona, Daniel Incicau, Ben Carrillo"
 benchmark_yaml_spec: 0.4
@@ -10,10 +10,10 @@ software_backend: apptainer
 software_environments:
 
   clustbench:
-    description: "clustbench on py3.12.9, optimized python build"
+    description: "clustbench on py3.12.6"
     conda: envs/clustbench.yml # not used
     envmodule: na
-    apptainer: envs/clustbench-optimized.sif
+    apptainer: envs/clustbench-vanilla.sif
 
   fcps:
     description: "CRAN's FCPS"
