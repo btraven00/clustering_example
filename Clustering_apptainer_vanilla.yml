@@ -1,31 +1,32 @@
-id: clustering_example_conda
+id: clustering_example_apptainer_vanilla
 
 description: Clustering benchmark on Gagolewski's, true number of clusters plus minus 2.
 version: 1.5
 benchmarker: "Izaskun Mallona, Daniel Incicau, Ben Carrillo"
 benchmark_yaml_spec: 0.4
 
-software_backend: conda
+software_backend: apptainer
 
 software_environments:
 
   clustbench:
-    description: "clustbench on py3.12.6"
-    conda: envs/clustbench.yml
-    envmodule: clustbench
-    apptainer: na
+    description: "clustbench on py3.12.3, default python"
+    envmodule: na
+    conda: envs/clustbench.yml # not used
+    apptainer: envs/clustbench-vanilla.sif
 
   fcps:
     description: "CRAN's FCPS"
-    conda: envs/fcps.yml
-    envmodule: fcps
-    apptainer: na
+    conda: envs/fcps.yml # not used
+    envmodule: na
+    apptainer: envs/fcps.sif
 
   rmarkdown:
     description: "R with some plotting dependencies"
-    conda: envs/rmarkdown.yml
-    envmodule: fcps # not used
-    apptainer: na
+    conda: envs/rmarkdown.yml # not used
+    envmodule: na
+    apptainer: envs/fcps.sif  # we reuse fcps env
+
 
 metric_collectors:
   - id: plotting
@@ -37,11 +38,10 @@ metric_collectors:
     inputs:
       - metrics.scores
     outputs:
-      - id: plotting.html
+       id: plotting.html
         path: "{input}/{name}/plotting_report.html"
 
 stages:
-  ## clustbench data ##########################################################
 
   - id: data
     modules:
@@ -121,16 +121,13 @@ stages:
       - id: data.true_labels
         path: "{input}/{stage}/{module}/{params}/{dataset}.labels0.gz"
 
-  ## clustbench methods (fastcluster) ###################################################################
-  
   - id: clustering
     modules:
       - id: fastcluster
         name: "fastcluster algorithm"
-        software_environment: "clustbench"
+        software_environment: clustbench
         repository:
           url: https://github.com/imallona/clustbench_fastcluster
-          # url: /home/imallona/src/clustbench_fastcluster/
           commit: "45e43d3"
         parameters:
           - values: ["--linkage", "complete"]
@@ -139,12 +136,12 @@ stages:
           - values: ["--linkage", "weighted"]
           - values: ["--linkage", "median"]
           - values: ["--linkage", "centroid"]
+
       - id: sklearn
-        name: "sklearn"
+        name: sklearn
         software_environment: clustbench
         repository:
           url: https://github.com/imallona/clustbench_sklearn
-          #url: /home/imallona/src/clustbench_sklearn
           commit: 5877378
         parameters:
           - values: ["--method", "birch"]
@@ -162,8 +159,8 @@ stages:
           - values: ["--linkage", "complete"]
           - values: ["--linkage", "ward"]
       - id: genieclust
-        name: "genieclust"
-        software_environment: "clustbench"
+        name: genieclust
+        software_environment: clustbench
         repository:
           url: https://github.com/imallona/clustbench_genieclust
           commit: 6090043
@@ -202,7 +199,7 @@ stages:
     modules:
       - id: partition_metrics
         name: "clustbench partition metrics"
-        software_environment: "clustbench"
+        software_environment: clustbench
         repository:
           url: https://github.com/imallona/clustbench_metrics
           commit: 9132d45
