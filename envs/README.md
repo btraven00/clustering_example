@@ -28,18 +28,14 @@ The "optimized" one does a custom python 3.12 compilation; the vanillapy stocks 
 - `clustbench_apptainer_optimized.def`
 - `clustbench_apptainer_vanillapy.def`
 - `fcps.def`
-- `rmarkdown.def`
 
 ### How to build
 
 - `make prepare_apptainer_env` from the root folder.
 
-## Aptainer semi-reproducible and remote
+## Aptainer semi-reproducible with registry pull
 
-TODO: push to the registry (how?)
-
-No need to prepare/build anything; let `ob run benchmark -b Clustering_oras.yml --local` do it using pre-built images from https://gitlab.renkulab.io/izaskun.mallona/clustering_example/container_registry.
-
+No need to prepare/build anything; let `ob run benchmark -b Clustering_oras.yml --local` do it using pre-built images from https://quay.io/omnibenchmark registry.
 
 ## envmodules - reproducible builds with easybuild
 
@@ -53,5 +49,4 @@ No need to prepare/build anything; let `ob run benchmark -b Clustering_oras.yml 
 ### How to build
 
 - `make prepare_envmodules_env` from the root folder.
-- `python3-wget` from pypi doesn't look very well maintaned
 

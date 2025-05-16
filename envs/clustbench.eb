@@ -28,11 +28,6 @@ exts_list = [
     ('hurry.filesize', '0.9', {
         'checksums': ['f5368329adbef86accd3bc9490522340bb79260455ae89b1a42c10f63801b9a6'],
     }),
-    ('python3-wget', '0.0.2-beta1', {
-        'modulename': 'wget',
-        'source_urls': ['https://files.pythonhosted.org/packages/84/a4/d9da2989a3d937e94616ef07f0630c507f6baa77ad37f94ceb06b36cacc1/'],
-        'checksums': ['bbe7f44b3c28c4f7126aff20e8a438e78f6e4f1878d8b0c4940e87363813c17d'],
-    }),
     ('genieclust', '1.1.6', {
         'download_dep_fail': False,
         'install_src': 'https://files.pythonhosted.org/packages/2a/09/d1fd7b02cfabe76262d0f88d74fa71dc93e857525f8249539ec5ab174292/genieclust-1.1.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl',
