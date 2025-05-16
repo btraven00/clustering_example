@@ -38,7 +38,7 @@ metric_collectors:
     inputs:
       - metrics.scores
     outputs:
-      - id: plotting.html
+       id: plotting.html
         path: "{input}/{name}/plotting_report.html"
 
 stages:

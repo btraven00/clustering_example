@@ -12,6 +12,8 @@ prepare_envmodules_env:
 	cd envs && eb rmarkdown.eb --robot
 
 # short versions, to debug runs & environments
+run_with_apptainer_backend_registry_short:
+	 ${OB_CMD} -b Clustering_apptainer_registry_smoketest.yml
 run_with_apptainer_backend_short:
 	 ${OB_CMD} -b Clustering_apptainer_vanilla_smoketest.yml
 	 mv out out_apptainer_short
@@ -23,6 +25,9 @@ run_with_envmodules_backend_short:
 	 mv out out_lmod_short
 
 # full versions (expect hours)
+run_with_apptainer_backend_registry:
+	 ${OB_CMD} -b Clustering_apptainer_registry.yml
+	 mv out out_apptainer_registry
 run_with_apptainer_backend_vanilla:
 	 ${OB_CMD} -b Clustering_apptainer_vanilla.yml
 	 mv out out_apptainer_vanilla

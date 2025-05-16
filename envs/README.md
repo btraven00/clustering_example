@@ -35,7 +35,11 @@ The "optimized" one does a custom python 3.12 compilation; the vanillapy stocks 
 
 ## Aptainer semi-reproducible with registry pull
 
-No need to prepare/build anything; let `ob run benchmark -b Clustering_oras.yml --local` do it using pre-built images from https://quay.io/omnibenchmark registry.
+No need to prepare/build anything, since it fetches the apptainer images from a remote registry:
+
+```bash
+ob run benchmark -b Clustering_apptainer_registry.yml --local
+```
 
 ## envmodules - reproducible builds with easybuild
 
