@@ -1,4 +1,8 @@
 #!/bin/sh
+# Builds singularity images.
+# Installation guide: check https://apptainer.org/docs/user/latest/quick_start.html#installation
+# Additionally, you will need:
+# apt install fakeroot uidmap
 CMD=singularity
 BUILD='build --fakeroot'
 # enable this if you want to compare with the custom python compilation

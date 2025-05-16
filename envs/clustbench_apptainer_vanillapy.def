@@ -54,9 +54,6 @@ From: ubuntu:noble-20250404
       "isodate==0.7.2" \
       "pydantic-core==2.34.1"
 
-    # TODO: can we use something more maintained?
-    pip install --pre "python3-wget==0.0.2-beta1"
-
     # Do some cleanup to keep the image slim
     rm -rf ~/.cache
 
