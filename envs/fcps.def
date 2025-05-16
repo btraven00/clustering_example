@@ -30,7 +30,7 @@ From: rocker/tidyverse:4.4
 
     # Install R packages
     ## FIXME no versioning here
-    Rscript -e 'BiocManager::install(c( "dbscan", "cluster", "protoclust", "energy", "argparse", "mclust", "DataVisualizations", "FCPS", "cclust"))'
+    Rscript -e 'BiocManager::install(c( "dbscan", "cluster", "protoclust", "energy", "argparse", "mclust", "caret", "DataVisualizations", "FCPS", "cclust"))'
 
     echo '. /opt/default/bin/activate' >> $SINGULARITY_ENVIRONMENT
 
