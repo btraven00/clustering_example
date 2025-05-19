@@ -90,6 +90,11 @@ A yaml such as [0a88c91](https://github.com/omnibenchmark/clustering_example/blo
 
 In `envs`: conda, apptainer, easybuild (lmod modules)
 
+# Omnibenchmark YAML generation
+
+The current repo has base templates for different runs.
+Install [yq](https://github.com/mikefarah/yq) and run `make generate` if you want to modify the base template in your tests.
+
 # Warnings
 
 Mind we try to run clusterings specifying the true number of clusters +- 2. But sometimes the true number is k=3. Then we do `k=2, k=2, k=3, k=5, k=6` filling with k=2s as needed, and recomputing the same values multiple times (so runtimes are comparable across datasets, regardless of their true number of clusters).
