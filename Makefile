@@ -1,6 +1,7 @@
 MAX_CORES ?= 10
 TIMEOUT ?= 4h
 YQ_MERGE=yq eval-all 'select(fileIndex==1) * select(fileIndex==0)'
+YQ_REPOS=yq '.stages[].modules[] | .id + ": " + .repository.url + "@" + .repository.commit'
 
 # by default, we want to run all snakemake rules even if there are failures (-k)
 OB_CMD=ob run benchmark -k --local --task-timeout ${TIMEOUT} --cores ${MAX_CORES} --yes
@@ -72,3 +73,6 @@ run_with_conda_backend:
 run_with_envmodules_backend:
 	 ${OB_CMD} -b Clustering_${ENVMD}.yml
 	 mv out out_${ENVMD}-$(shell date +'%Y%m%d%H%M')
+
+extract_modules:
+	@${YQ_REPOS} base.yml
