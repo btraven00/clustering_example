@@ -19,6 +19,7 @@ deps:
 	go install github.com/mikefarah/yq/v4@latest
 
 # Generate all the yaml files from base + overrides
+.SILENT: generate
 generate:
 	${YQ_MERGE} overrides/${APPTR}.yml ${BASE} > Clustering_${APPTR}.yml
 	${YQ_MERGE} overrides/${APPTV}.yml ${BASE} > Clustering_${APPTV}.yml
@@ -30,7 +31,9 @@ generate:
 	${YQ_MERGE} overrides/${APPTO}.yml ${BASE_SHORT} > Clustering_${APPTO}_short.yml
 	${YQ_MERGE} overrides/${CONDA}.yml ${BASE_SHORT} > Clustering_${CONDA}_short.yml
 	${YQ_MERGE} overrides/${ENVMD}.yml ${BASE_SHORT} > Clustering_${ENVMD}_short.yml
-
+	echo "[+] The following files have been generated:"
+	ls Clustering_*.yml
+	echo "[+] You can use 'make clean' to delete them"
 
 clean:
 	rm Clustering_*.yml
@@ -43,31 +46,29 @@ prepare_envmodules_env:
 	cd envs && eb rmarkdown.eb --robot
 
 # short versions, to debug runs & environments
-run_with_apptainer_backend_registry_short:
-	 ${OB_CMD} -b Clustering_registry_short.yml
 run_with_apptainer_backend_short:
-	 ${OB_CMD} -b Clustering_apptainer_short.yml
-	 mv out out_apptainer_short
+	 ${OB_CMD} -b Clustering_${APPTR}_short.yml
+	 mv out out_${APPTR}_short-$(shell date +'%Y%m%d%H%M')
+run_with_apptainer_backend_vanilla_short:
+	 ${OB_CMD} -b Clustering_${APPTV}_short.yml
+	 mv out out_${APPTV}_short-$(shell date +'%Y%m%d%H%M')
 run_with_conda_backend_short:
-	 ${OB_CMD} -b Clustering_conda_short.yml
-	 mv out out_conda_short
+	 ${OB_CMD} -b Clustering_${CONDA}_short.yml
+	 mv out out_${CONDA}_short-$(shell date +'%Y%m%d%H%M')
 run_with_envmodules_backend_short:
-	 ${OB_CMD} -b Clustering_envmodules_short.yml
-	 mv out out_lmod_short
+	 ${OB_CMD} -b Clustering_${ENVMD}.yml
+	 mv out out_${ENVMD}_short-$(shell date +'%Y%m%d%H%M')
 
 # full versions (expect hours)
-run_with_apptainer_backend_registry:
-	 ${OB_CMD} -b Clustering_apptainer_registry.yml
-	 mv out out_apptainer_registry
+run_with_apptainer_backend:
+	 ${OB_CMD} -b Clustering_${APPTR}.yml
+	 mv out out_${APPTR}-$(shell date +'%Y%m%d%H%M')
 run_with_apptainer_backend_vanilla:
-	 ${OB_CMD} -b Clustering_apptainer_vanilla.yml
-	 mv out out_apptainer_vanilla
-run_with_apptainer_backend_optimized:
-	 ${OB_CMD} -b Clustering_apptainer_optimized.yml
-	 mv out out_apptainer_vanilla
+	 ${OB_CMD} -b Clustering_${APPTV}.yml
+	 mv out out_${APPTV}-$(shell date +'%Y%m%d%H%M')
 run_with_conda_backend:
-	 ${OB_CMD} -b Clustering_conda.yml
-	 mv out out_conda
+	 ${OB_CMD} -b Clustering_${CONDA}.yml
+	 mv out out_${CONDA}-$(shell date +'%Y%m%d%H%M')
 run_with_envmodules_backend:
-	 ${OB_CMD} -b Clustering_envmodules.yml
-	 mv out out_lmod
+	 ${OB_CMD} -b Clustering_${ENVMD}.yml
+	 mv out out_${ENVMD}-$(shell date +'%Y%m%d%H%M')
