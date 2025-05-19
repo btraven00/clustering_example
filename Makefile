@@ -3,7 +3,7 @@ TIMEOUT ?= 4h
 YQ_MERGE=yq eval-all 'select(fileIndex==1) * select(fileIndex==0)'
 
 # by default, we want to run all snakemake rules even if there are failures (-k)
-OB_CMD=ob run benchmark -k --local --task-timeout ${TIMEOUT} --cores ${MAX_CORES}
+OB_CMD=ob run benchmark -k --local --task-timeout ${TIMEOUT} --cores ${MAX_CORES} --yes
 
 APPTR = apptainer
 APPTV = apptainer_vanilla

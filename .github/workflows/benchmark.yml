@@ -61,7 +61,7 @@ jobs:
         shell: bash -l {0}
         continue-on-error: false
         run: |
-          echo "y" | ob run benchmark -b Clustering_conda_smoketest.yml --local --cores 3 --continue-on-error
+          ob run benchmark -b Clustering_conda_short.yml --local --cores 3 --continue-on-error --yes
 
   upload-artifact:
     name: Benchmark Artifact
