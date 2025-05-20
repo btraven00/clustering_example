@@ -48,14 +48,14 @@ jobs:
         shell: bash -l {0}
         run: |
           mamba install -y pip
-          pip install git+https://github.com/omnibenchmark/omnibenchmark.git@dev
+          pip install git+https://github.com/omnibenchmark/omnibenchmark.git@main
 
       - name: Load benchmark cache
         id: cache-benchmark
         uses: actions/cache@v3
         with:
           path: out/
-          key: benchmark-${{ runner.os }}-${{ hashFiles('Clustering.yaml') }}
+          key: benchmark-${{ runner.os }}-${{ hashFiles('Clustering_conda_short.yml') }}
 
       - name: Run benchmark
         shell: bash -l {0}
