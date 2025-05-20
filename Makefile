@@ -57,7 +57,7 @@ run_with_conda_backend_short:
 	 ${OB_CMD} -b Clustering_${CONDA}_short.yml
 	 mv out out_${CONDA}_short-$(shell date +'%Y%m%d%H%M')
 run_with_envmodules_backend_short:
-	 ${OB_CMD} -b Clustering_${ENVMD}.yml
+	 ${OB_CMD} -b Clustering_${ENVMD}_short.yml
 	 mv out out_${ENVMD}_short-$(shell date +'%Y%m%d%H%M')
 
 # full versions (expect hours)
