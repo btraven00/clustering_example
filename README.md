@@ -17,7 +17,7 @@ A clustering example for omnibenchmark
 * `apptainer-vanilla` makes reference to a container image with stock python (`3.12`)
 * `apptainer-optimized` makes reference to a container image with a custom compiled python (`3.12.9`), just to check if optimization flags have a noticeable effect.
 * `envmodules` will need you to previously build the `.eb` easyconfigs with easybuild. We plan to make these modules publicly available in the future.
-* `conda` environments will fetch software from the configured conda channels and pypi. Does not compile anything, fetches pre-built binaries (assuming there's a build in those channels for your architecture, that is)
+* `conda` environments will fetch packages from the configured conda channels and pypi. Should only compile python modules with extensions for which there's no wheels on pypi. The conda recipes might fail if there're no builds on the pre-defined channels for your architecture.
 
 [More info in the envs/ folder](https://github.com/omnibenchmark/clustering_example/blob/main/envs/README.md).
 
