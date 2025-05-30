@@ -14,8 +14,15 @@ From: rocker/tidyverse:4.4
     apt-get install -y git \
         python-is-python3 \
         python3.12 \
-        python3.12-venv \
-        && apt-get clean && \
+        python3.12-venv 
+
+    # install dependencies
+    apt-get install -y \
+        cmake \
+        libgsl-dev libgsl27
+
+    # cleanup apt cache
+    apt-get clean && \
         rm -rf /var/lib/apt/lists/*
 
     # virtualenv
@@ -29,8 +36,11 @@ From: rocker/tidyverse:4.4
         "pydantic-core==2.34.1"
 
     # Install R packages
+    Rscript -e 'install.packages("gsl", repos="https://cloud.r-project.org")'
+    Rscript -e 'install.packages("FCPS", repos="https://cloud.r-project.org", dependencies=TRUE)'
+
     ## FIXME no versioning here
-    Rscript -e 'BiocManager::install(c( "dbscan", "cluster", "protoclust", "energy", "argparse", "mclust", "caret", "DataVisualizations", "FCPS", "cclust"))'
+    Rscript -e 'BiocManager::install(c( "dbscan", "cluster", "protoclust", "energy", "argparse", "mclust", "caret", "DataVisualizations", "cclust"))'
 
     echo '. /opt/default/bin/activate' >> $SINGULARITY_ENVIRONMENT
 

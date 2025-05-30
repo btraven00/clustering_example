@@ -14,13 +14,13 @@ software_environments:
     description: "CRAN's FCPS"
     conda: envs/fcps.yml
     envmodule: fcps/1.3.4-foss-2023a-r-4.3.2
-    apptainer: oras://quay.io/omnibenchmark/fcps:0.1.0
+    apptainer: oras://quay.io/omnibenchmark/fcps:0.1.1
 
   rmarkdown:
     description: "R with some plotting dependencies"
     conda: envs/rmarkdown.yml
     envmodule: rmarkdown/0.1.0-gfbf-2024a-r-4.4.2
-    apptainer: oras://quay.io/omnibenchmark/fcps:0.1.0
+    apptainer: oras://quay.io/omnibenchmark/fcps:0.1.1
 
 
 metric_collectors:
