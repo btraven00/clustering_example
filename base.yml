@@ -3,7 +3,6 @@ benchmarker: "Izaskun Mallona, Daniel Incicau"
 benchmark_yaml_spec: 0.4
 
 software_environments:
-
   clustbench:
     description: "clustbench on py3.12.9, optimized python build"
     conda: envs/clustbench.yml
@@ -22,14 +21,13 @@ software_environments:
     envmodule: rmarkdown/0.1.0-gfbf-2024a-r-4.4.2
     apptainer: oras://quay.io/omnibenchmark/fcps:0.1.1
 
-
 metric_collectors:
   - id: plotting
     name: "Single-backend metric collector."
     software_environment: rmarkdown
     repository:
       url: https://github.com/imallona/clustering_report
-      commit: 1d6bdf5
+      commit: 167e221
     inputs:
       - metrics.scores
     outputs:
@@ -37,7 +35,6 @@ metric_collectors:
         path: "{input}/{name}/plotting_report.html"
 
 stages:
-
   - id: data
     modules:
       - id: clustbench
@@ -47,63 +44,12 @@ stages:
           url: https://github.com/imallona/clustbench_data
           commit: 31ac323
 
-        parameters:  # comments depict the possible cardinalities and the number of curated labelsets
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "atom"] #	2	1
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "chainlink"] #	2	1
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "engytime"] #	2	2
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "hepta"] #	7	1
+        parameters: # comments depict the possible cardinalities and the number of curated labelsets
           - values: ["--dataset_generator", "fcps", "--dataset_name", "lsun"] #	3	1
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "target"] #	2, 6	2
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "tetra"] #	4	1
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "twodiamonds"] #	2	1
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "wingnut"] #	2	1
-          - values: ["--dataset_generator", "graves", "--dataset_name", "dense"] #	2	1
-          - values: ["--dataset_generator", "graves", "--dataset_name", "fuzzyx"] #	2, 4, 5	6
-          - values: ["--dataset_generator", "graves", "--dataset_name", "line"] #	2	1
-          - values: ["--dataset_generator", "graves", "--dataset_name", "parabolic"] #	2, 4	2
-          - values: ["--dataset_generator", "graves", "--dataset_name", "ring"] #	2	1
-          - values: ["--dataset_generator", "graves", "--dataset_name", "ring_noisy"] #	2	1
-          - values: ["--dataset_generator", "graves", "--dataset_name", "ring_outliers"] #	2, 5	2
-          - values: ["--dataset_generator", "graves", "--dataset_name", "zigzag"] #	3, 5	2
-          - values: ["--dataset_generator", "graves", "--dataset_name", "zigzag_noisy"] #	3, 5	2
-          - values: ["--dataset_generator", "graves", "--dataset_name", "zigzag_outliers"] #	3, 5	2
-          - values: ["--dataset_generator", "other", "--dataset_name", "chameleon_t4_8k"] #	6	1
-          - values: ["--dataset_generator", "other", "--dataset_name", "chameleon_t5_8k"] #	6	1
-          - values: ["--dataset_generator", "other", "--dataset_name", "hdbscan"] #	6	1
-          - values: ["--dataset_generator", "other", "--dataset_name", "iris"] #	3	1
-          - values: ["--dataset_generator", "other", "--dataset_name", "iris5"] #	3	1
-          - values: ["--dataset_generator", "other", "--dataset_name", "square"] #	2	1
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "aggregation"] #	7	1
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "compound"] #	4, 5, 6	5
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "flame"] #	2	2
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "jain"] #	2	1
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "pathbased"] #	3, 4	2
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "r15"] #	8, 9, 15	3
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "spiral"] #	3	1
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "unbalance"] #	8	1
-          - values: ["--dataset_generator", "uci", "--dataset_name", "ecoli"] #	8	1
-          - values: ["--dataset_generator", "uci", "--dataset_name", "ionosphere"] #	2	1
-          - values: ["--dataset_generator", "uci", "--dataset_name", "sonar"] #	2	1
-          - values: ["--dataset_generator", "uci", "--dataset_name", "statlog"] #	7	1
-          - values: ["--dataset_generator", "uci", "--dataset_name", "wdbc"] #	2	1
-          - values: ["--dataset_generator", "uci", "--dataset_name", "wine"] #	3	1
-          - values: ["--dataset_generator", "uci", "--dataset_name", "yeast"] #	10	1
           - values: ["--dataset_generator", "wut", "--dataset_name", "circles"] #	4	1
           - values: ["--dataset_generator", "wut", "--dataset_name", "cross"] #	4	1
           - values: ["--dataset_generator", "wut", "--dataset_name", "graph"] #	10	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "isolation"] #	3	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "labirynth"] #	6	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "mk1"] #	3	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "mk2"] #	2	1
           - values: ["--dataset_generator", "wut", "--dataset_name", "mk3"] #	3	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "mk4"] #	3	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "olympic"] #	5	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "smile"] #	4, 6	2
-          - values: ["--dataset_generator", "wut", "--dataset_name", "stripes"] #	2	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "trajectories"] #	4	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "trapped_lovers"] #	3	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "twosplashes"] #	2	1
-          - values: ["--dataset_generator", "wut", "--dataset_name", "windows"] #	5	1
           - values: ["--dataset_generator", "wut", "--dataset_name", "x1"] #	3	1
           - values: ["--dataset_generator", "wut", "--dataset_name", "x2"] #	3	1
           - values: ["--dataset_generator", "wut", "--dataset_name", "x3"] #	4	1
@@ -118,70 +64,69 @@ stages:
 
   - id: clustering
     modules:
-      - id: fastcluster
-        name: "fastcluster algorithm"
-        software_environment: clustbench
-        repository:
-          url: https://github.com/imallona/clustbench_fastcluster
-          commit: "45e43d3"
-        parameters:
-          - values: ["--linkage", "complete"]
-          - values: ["--linkage", "ward"]
-          - values: ["--linkage", "average"]
-          - values: ["--linkage", "weighted"]
-          - values: ["--linkage", "median"]
-          - values: ["--linkage", "centroid"]
-
-      - id: sklearn
-        name: sklearn
-        software_environment: clustbench
-        repository:
-          url: https://github.com/imallona/clustbench_sklearn
-          commit: 5877378
-        parameters:
-          - values: ["--method", "birch"]
-          - values: ["--method", "kmeans"]
-          # - values: ["--method", "spectral"] ## too slow
-          - values: ["--method", "gm"]
-      - id: agglomerative
-        name: "agglomerative"
-        software_environment: "clustbench"
-        repository:
-          url: https://github.com/imallona/clustbench_agglomerative
-          commit: 5454368
-        parameters:
-          - values: ["--linkage", "average"]
-          - values: ["--linkage", "complete"]
-          - values: ["--linkage", "ward"]
-      - id: genieclust
-        name: genieclust
-        software_environment: clustbench
-        repository:
-          url: https://github.com/imallona/clustbench_genieclust
-          commit: 6090043
-        parameters:
-          - values: ["--method", "genie", "--gini_threshold", 0.5]
-          - values: ["--method", "gic"]
-          - values: ["--method", "ica"]
       - id: fcps
         name: "fcps"
         software_environment: "fcps"
         repository:
           url: https://github.com/btraven00/clustbench_fcps
-          commit: e43f277
+          commit: de1eb7e
         parameters:
-          # - values: ["--method", "FCPS_AdaptiveDensityPeak"] # not in conda
-          - values: ["--method", "FCPS_Minimax"]
-          - values: ["--method", "FCPS_MinEnergy"]
-          - values: ["--method", "FCPS_HDBSCAN_2"]
-          - values: ["--method", "FCPS_HDBSCAN_4"]
-          - values: ["--method", "FCPS_HDBSCAN_8"]
-          - values: ["--method", "FCPS_Diana"]
-          - values: ["--method", "FCPS_Fanny"]
-          - values: ["--method", "FCPS_Hardcl"]
-          - values: ["--method", "FCPS_Softcl"]
-          - values: ["--method", "FCPS_Clara"]
-          - values: ["--method", "FCPS_PAM"]
+          # this for sure would look nicer if we implement a combinatorial approach
+          - values: ["--method", "FCPS_Minimax", "--seed", "839"]
+          - values: ["--method", "FCPS_Minimax", "--seed", "172"]
+          - values: ["--method", "FCPS_Minimax", "--seed", "323"]
+          - values: ["--method", "FCPS_Minimax", "--seed", "812"]
+          - values: ["--method", "FCPS_Minimax", "--seed", "692"]
+          - values: ["--method", "FCPS_MinEnergy", "--seed", "839"]
+          - values: ["--method", "FCPS_MinEnergy", "--seed", "172"]
+          - values: ["--method", "FCPS_MinEnergy", "--seed", "323"]
+          - values: ["--method", "FCPS_MinEnergy", "--seed", "812"]
+          - values: ["--method", "FCPS_MinEnergy", "--seed", "692"]
+          - values: ["--method", "FCPS_HDBSCAN_2", "--seed", "839"]
+          - values: ["--method", "FCPS_HDBSCAN_2", "--seed", "172"]
+          - values: ["--method", "FCPS_HDBSCAN_2", "--seed", "323"]
+          - values: ["--method", "FCPS_HDBSCAN_2", "--seed", "812"]
+          - values: ["--method", "FCPS_HDBSCAN_2", "--seed", "692"]
+          - values: ["--method", "FCPS_HDBSCAN_4", "--seed", "839"]
+          - values: ["--method", "FCPS_HDBSCAN_4", "--seed", "172"]
+          - values: ["--method", "FCPS_HDBSCAN_4", "--seed", "323"]
+          - values: ["--method", "FCPS_HDBSCAN_4", "--seed", "812"]
+          - values: ["--method", "FCPS_HDBSCAN_4", "--seed", "692"]
+          - values: ["--method", "FCPS_HDBSCAN_8", "--seed", "839"]
+          - values: ["--method", "FCPS_HDBSCAN_8", "--seed", "172"]
+          - values: ["--method", "FCPS_HDBSCAN_8", "--seed", "323"]
+          - values: ["--method", "FCPS_HDBSCAN_8", "--seed", "812"]
+          - values: ["--method", "FCPS_HDBSCAN_8", "--seed", "692"]
+          - values: ["--method", "FCPS_Diana", "--seed", "839"]
+          - values: ["--method", "FCPS_Diana", "--seed", "172"]
+          - values: ["--method", "FCPS_Diana", "--seed", "323"]
+          - values: ["--method", "FCPS_Diana", "--seed", "812"]
+          - values: ["--method", "FCPS_Diana", "--seed", "692"]
+          - values: ["--method", "FCPS_Fanny", "--seed", "839"]
+          - values: ["--method", "FCPS_Fanny", "--seed", "172"]
+          - values: ["--method", "FCPS_Fanny", "--seed", "323"]
+          - values: ["--method", "FCPS_Fanny", "--seed", "812"]
+          - values: ["--method", "FCPS_Fanny", "--seed", "692"]
+          - values: ["--method", "FCPS_Hardcl", "--seed", "839"]
+          - values: ["--method", "FCPS_Hardcl", "--seed", "172"]
+          - values: ["--method", "FCPS_Hardcl", "--seed", "323"]
+          - values: ["--method", "FCPS_Hardcl", "--seed", "812"]
+          - values: ["--method", "FCPS_Hardcl", "--seed", "692"]
+          - values: ["--method", "FCPS_Softcl", "--seed", "839"]
+          - values: ["--method", "FCPS_Softcl", "--seed", "172"]
+          - values: ["--method", "FCPS_Softcl", "--seed", "323"]
+          - values: ["--method", "FCPS_Softcl", "--seed", "812"]
+          - values: ["--method", "FCPS_Softcl", "--seed", "692"]
+          - values: ["--method", "FCPS_Clara", "--seed", "839"]
+          - values: ["--method", "FCPS_Clara", "--seed", "172"]
+          - values: ["--method", "FCPS_Clara", "--seed", "323"]
+          - values: ["--method", "FCPS_Clara", "--seed", "812"]
+          - values: ["--method", "FCPS_Clara", "--seed", "692"]
+          - values: ["--method", "FCPS_PAM", "--seed", "839"]
+          - values: ["--method", "FCPS_PAM", "--seed", "172"]
+          - values: ["--method", "FCPS_PAM", "--seed", "323"]
+          - values: ["--method", "FCPS_PAM", "--seed", "812"]
+          - values: ["--method", "FCPS_PAM", "--seed", "692"]
     inputs:
       - entries:
           - data.matrix
@@ -217,4 +162,3 @@ stages:
     outputs:
       - id: metrics.scores
         path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
-
