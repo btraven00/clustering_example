@@ -33,7 +33,8 @@ From: rocker/tidyverse:4.4
     pip install \
         "gitpython==3.1.43" \
         "isodate==0.7.2" \
-        "pydantic-core==2.34.1"
+        "pydantic-core==2.34.1" \
+        "denet==0.3.2"
 
     # Install R packages
     Rscript -e 'install.packages("gsl", repos="https://cloud.r-project.org")'

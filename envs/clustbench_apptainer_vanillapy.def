@@ -52,7 +52,8 @@ From: ubuntu:noble-20250404
       "fastcluster==1.3.0" \
       "gitpython==3.1.43" \
       "isodate==0.7.2" \
-      "pydantic-core==2.34.1"
+      "pydantic-core==2.34.1" \
+      "denet==0.3.2"
 
     # Do some cleanup to keep the image slim
     rm -rf ~/.cache
