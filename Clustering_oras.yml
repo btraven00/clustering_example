@@ -170,16 +170,16 @@ stages:
         parameters:
           # - values: ["--method", "FCPS_AdaptiveDensityPeak"] # not in conda
           - values: ["--method", "FCPS_Minimax", "--seed", 2]
-          - values: ["--method", "FCPS_MinEnergy", "--seed", 2]
-          - values: ["--method", "FCPS_HDBSCAN_2", "--seed", 2]
-          - values: ["--method", "FCPS_HDBSCAN_4", "--seed", 2]
-          - values: ["--method", "FCPS_HDBSCAN_8", "--seed", 2]
-          - values: ["--method", "FCPS_Diana", "--seed", 2]
-          - values: ["--method", "FCPS_Fanny", "--seed", 2]
-          - values: ["--method", "FCPS_Hardcl", "--seed", 2] 
-          - values: ["--method", "FCPS_Softcl", "--seed", 2] 
-          - values: ["--method", "FCPS_Clara", "--seed", 2]
-          - values: ["--method", "FCPS_PAM", "--seed", 2]
+          # - values: ["--method", "FCPS_MinEnergy", "--seed", 2]
+          # - values: ["--method", "FCPS_HDBSCAN_2", "--seed", 2]
+          # - values: ["--method", "FCPS_HDBSCAN_4", "--seed", 2]
+          # - values: ["--method", "FCPS_HDBSCAN_8", "--seed", 2]
+          # - values: ["--method", "FCPS_Diana", "--seed", 2]
+          # - values: ["--method", "FCPS_Fanny", "--seed", 2]
+          # - values: ["--method", "FCPS_Hardcl", "--seed", 2] 
+          # - values: ["--method", "FCPS_Softcl", "--seed", 2] 
+          # - values: ["--method", "FCPS_Clara", "--seed", 2]
+          # - values: ["--method", "FCPS_PAM", "--seed", 2]
     inputs:
       - entries:
           - data.matrix
@@ -215,89 +215,3 @@ stages:
     outputs:
       - id: metrics.scores
         path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
-
-  # ## daniel's data ###########################################################################
-  
-  # - id: danielsdata
-  #   modules:
-  #     - id: iris_manual
-  #       name: "Iris Dataset"
-  #       software_environment: "sklearn"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/iris.git
-  #         commit: 47c63f0
-  #     - id: penguins
-  #       name: "Penguins Dataset"
-  #       software_environment: "sklearn"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/penguins.git
-  #         commit: 9032478
-  #   outputs:
-  #     - id: data.features
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.features.csv"
-  #     - id: data.labels
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.labels.csv"
-  
-  # ## daniel's distances ########################################################################
-  
-  # - id: distances
-  #   modules:
-  #     - id: D1
-  #       software_environment: "sklearn"
-  #       parameters:
-  #         - values: ["--measure", "cosine"]
-  #         - values: ["--measure", "euclidean"]
-  #         - values: ["--measure", "manhattan"]
-  #         - values: ["--measure", "chebyshev"]
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/distance.git
-  #         commit: dd99d4f
-  #   inputs:
-  #     - entries:
-  #         - data.features
-  #   outputs:
-  #     - id: distances
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.distances.csv"
-        
-  # ## daniel's methods ###################################################################
-  
-  # - id: danielmethods
-  #   modules:
-  #     - id: kmeans
-  #       software_environment: "sklearn"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/kmeans.git
-  #         commit: 049c8b1
-  #     - id: ward
-  #       software_environment: "R"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/ward.git
-  #         commit: 976e3f3
-  #   inputs:
-  #     - entries:
-  #         - distances
-  #   outputs:
-  #     - id: methods.clusters
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.clusters.csv"
-
-  # ## daniel's metrics ###################################################################
-
-  # - id: danielsmetrics
-  #   modules:
-  #     - id: ari
-  #       software_environment: "R"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/ari.git
-  #         commit: 72708f0
-  #     - id: accuracy
-  #       software_environment: "R"
-  #       repository:
-  #         url: https://github.com/omnibenchmark-example/accuracy.git
-  #         commit: e26b32f
-  #   inputs:
-  #     - entries:
-  #         - methods.clusters
-  #         - data.labels
-  #   outputs:
-  #     - id: metrics.mapping
-  #       path: "{input}/{stage}/{module}/{params}/{dataset}.metrics.txt"
