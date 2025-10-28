@@ -44,7 +44,7 @@ stages:
           commit: 366c5a2
         parameters:  # comments depict the possible cardinalities and the number of curated labelsets
           - values: ["--dataset_generator", "fcps", "--dataset_name", "atom"] #	2	1
-          # - values: ["--dataset_generator", "fcps", "--dataset_name", "chainlink"] #	2	1
+          - values: ["--dataset_generator", "fcps", "--dataset_name", "chainlink"] #	2	1
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "engytime"] #	2	2
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "hepta"] #	7	1
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "lsun"] #	3	1
@@ -52,7 +52,7 @@ stages:
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "tetra"] #	4	1
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "twodiamonds"] #	2	1
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "wingnut"] #	2	1
-          - values: ["--dataset_generator", "graves", "--dataset_name", "dense"] #	2	1
+          # - values: ["--dataset_generator", "graves", "--dataset_name", "dense"] #	2	1
           # - values: ["--dataset_generator", "graves", "--dataset_name", "fuzzyx"] #	2, 4, 5	6
           # - values: ["--dataset_generator", "graves", "--dataset_name", "line"] #	2	1
           # - values: ["--dataset_generator", "graves", "--dataset_name", "parabolic"] #	2, 4	2
@@ -65,10 +65,10 @@ stages:
           # - values: ["--dataset_generator", "other", "--dataset_name", "chameleon_t4_8k"] #	6	1
           # - values: ["--dataset_generator", "other", "--dataset_name", "chameleon_t5_8k"] #	6	1
           # - values: ["--dataset_generator", "other", "--dataset_name", "hdbscan"] #	6	1
-          - values: ["--dataset_generator", "other", "--dataset_name", "iris"] #	3	1
+          # - values: ["--dataset_generator", "other", "--dataset_name", "iris"] #	3	1
           # - values: ["--dataset_generator", "other", "--dataset_name", "iris5"] #	3	1
           # - values: ["--dataset_generator", "other", "--dataset_name", "square"] #	2	1
-          - values: ["--dataset_generator", "sipu", "--dataset_name", "aggregation"] #	7	1
+          # - values: ["--dataset_generator", "sipu", "--dataset_name", "aggregation"] #	7	1
           # - values: ["--dataset_generator", "sipu", "--dataset_name", "compound"] #	4, 5, 6	5
           # - values: ["--dataset_generator", "sipu", "--dataset_name", "flame"] #	2	2
           # - values: ["--dataset_generator", "sipu", "--dataset_name", "jain"] #	2	1
@@ -76,7 +76,7 @@ stages:
           # - values: ["--dataset_generator", "sipu", "--dataset_name", "r15"] #	8, 9, 15	3
           # - values: ["--dataset_generator", "sipu", "--dataset_name", "spiral"] #	3	1
           # - values: ["--dataset_generator", "sipu", "--dataset_name", "unbalance"] #	8	1
-          - values: ["--dataset_generator", "uci", "--dataset_name", "ecoli"] #	8	1
+          # - values: ["--dataset_generator", "uci", "--dataset_name", "ecoli"] #	8	1
           # - values: ["--dataset_generator", "uci", "--dataset_name", "ionosphere"] #	2	1
           # - values: ["--dataset_generator", "uci", "--dataset_name", "sonar"] #	2	1
           # - values: ["--dataset_generator", "uci", "--dataset_name", "statlog"] #	7	1
@@ -199,10 +199,10 @@ stages:
         parameters:
           - values: ["--metric", "normalized_clustering_accuracy"]
           - values: ["--metric", "adjusted_fm_score"]
-          - values: ["--metric", "adjusted_mi_score"]
-          - values: ["--metric", "adjusted_rand_score"]
-          - values: ["--metric", "fm_score"]
-          - values: ["--metric", "mi_score"]
+          # - values: ["--metric", "adjusted_mi_score"]
+          # - values: ["--metric", "adjusted_rand_score"]
+          # - values: ["--metric", "fm_score"]
+          # - values: ["--metric", "mi_score"]
           # - values: ["--metric", "normalized_clustering_accuracy"]
           # - values: ["--metric", "normalized_mi_score"]
           # - values: ["--metric", "normalized_pivoted_accuracy"]
