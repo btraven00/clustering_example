@@ -7,6 +7,10 @@ A clustering example for omnibenchmark
 3. Move to the cloned repository `cd clustering_example`
 4. Run locally, somewhat in parallel `ob run benchmark -b CLUSTERING.YAML  --local-storage --cores 6`. Choose `Clustering.yml` specification based on whether running it with conda, easybuild, apptainer, etc. [More details about the available backends](https://github.com/omnibenchmark/clustering_example/blob/main/envs/README.md).
 
+# Disclaimer
+
+This does not work in arm64.
+
 # Clustbench attribution
 
 by Marek Gagolewski, modified by Izaskun Mallona
