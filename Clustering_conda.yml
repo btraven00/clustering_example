@@ -21,8 +21,9 @@ metric_collectors:
     name: "Single-backend metric collector."
     software_environment: "fcps"
     repository:
-      url: https://github.com/imallona/clustering_report
-      commit: 8e8929a
+      url: https://github.com/btraven00/clustering_report
+      #commit: 8e8929a
+      commit: c94d54e
     inputs:
       - metrics.scores
     outputs:
