@@ -42,7 +42,7 @@ stages:
           commit: 366c5a2
         parameters:  # comments depict the possible cardinalities and the number of curated labelsets
           - values: ["--dataset_generator", "fcps", "--dataset_name", "atom"] #	2	1
-          - values: ["--dataset_generator", "fcps", "--dataset_name", "chainlink"] #	2	1
+          # - values: ["--dataset_generator", "fcps", "--dataset_name", "chainlink"] #	2	1
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "engytime"] #	2	2
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "hepta"] #	7	1
           # - values: ["--dataset_generator", "fcps", "--dataset_name", "lsun"] #	3	1
