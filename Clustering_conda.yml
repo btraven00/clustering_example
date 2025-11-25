@@ -22,7 +22,7 @@ metric_collectors:
     software_environment: "fcps"
     repository:
       url: https://github.com/btraven00/clustering_report
-      commit: 73a53e38
+      commit: f826420f
 
     inputs:
       - metrics.scores
