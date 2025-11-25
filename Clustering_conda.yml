@@ -154,7 +154,7 @@ stages:
           commit: 9132d45
         parameters:
           - values: ["--metric", "normalized_clustering_accuracy"]
-          - values: ["--metric", "adjusted_fm_score"]
+          # - values: ["--metric", "adjusted_fm_score"]
           # - values: ["--metric", "adjusted_mi_score"]
           # - values: ["--metric", "adjusted_rand_score"]
           # - values: ["--metric", "fm_score"]
