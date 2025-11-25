@@ -117,15 +117,9 @@ stages:
         software_environment: "clustbench"
         repository:
           url: https://github.com/imallona/clustbench_fastcluster
-          # url: /home/imallona/src/clustbench_fastcluster/
           commit: "45e43d3"
         parameters:
           - values: ["--linkage", "complete"]
-          # - values: ["--linkage", "ward"]
-          # - values: ["--linkage", "average"]
-          # - values: ["--linkage", "weighted"]
-          # - values: ["--linkage", "median"]
-          # - values: ["--linkage", "centroid"]
       - id: genieclust
         name: "genieclust"
         software_environment: "clustbench"
@@ -134,8 +128,6 @@ stages:
           commit: 6090043
         parameters:
           - values: ["--method", "genie", "--gini_threshold", 0.5]
-          # -  values: ["--method", "gic"]
-          # - values: ["--method", "ica"]
       - id: fcps
         name: "fcps"
         software_environment: "fcps"
@@ -143,18 +135,7 @@ stages:
           url: https://github.com/imallona/clustbench_fcps
           commit: fc37faa
         parameters:
-          # - values: ["--method", "FCPS_AdaptiveDensityPeak"] # not in Conda
           - values: ["--method", "FCPS_Minimax", "--seed", 2]
-          # - values: ["--method", "FCPS_MinEnergy", "--seed", 2]
-          # - values: ["--method", "FCPS_HDBSCAN_2", "--seed", 2]
-          # - values: ["--method", "FCPS_HDBSCAN_4", "--seed", 2]
-          # - values: ["--method", "FCPS_HDBSCAN_8", "--seed", 2]
-          # - values: ["--method", "FCPS_Diana", "--seed", 2]
-          # - values: ["--method", "FCPS_Fanny", "--seed", 2]
-          # - values: ["--method", "FCPS_Hardcl", "--seed", 2] 
-          # - values: ["--method", "FCPS_Softcl", "--seed", 2] 
-          # - values: ["--method", "FCPS_Clara", "--seed", 2]
-          # - values: ["--method", "FCPS_PAM", "--seed", 2]
     inputs:
         - data.matrix
         - data.true_labels
@@ -172,7 +153,7 @@ stages:
           commit: 9132d45
         parameters:
           - values: ["--metric", "normalized_clustering_accuracy"]
-          # - values: ["--metric", "adjusted_fm_score"]
+          - values: ["--metric", "adjusted_fm_score"]
           # - values: ["--metric", "adjusted_mi_score"]
           # - values: ["--metric", "adjusted_rand_score"]
           # - values: ["--metric", "fm_score"]
@@ -183,8 +164,9 @@ stages:
           # - values: ["--metric", "pair_sets_index"]
           # - values: ["--metric", "rand_score"]
     inputs:
+      - entries:
         - clustering.predicted_ks_range
         - data.true_labels
     outputs:
       - id: metrics.scores
-        path: "{dataset}.scores.gz"
+        path: "{input}/{stage}/{module}/{params}/{dataset}.scores.gz"
