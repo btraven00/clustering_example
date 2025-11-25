@@ -22,7 +22,7 @@ metric_collectors:
     software_environment: "fcps"
     repository:
       url: https://github.com/imallona/clustering_report
-      commit: bbb9d56
+      commit: 8e8929a
     inputs:
       - metrics.scores
     outputs:
